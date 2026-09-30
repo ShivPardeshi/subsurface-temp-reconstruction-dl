@@ -1,0 +1,60 @@
+# ==============================================================================
+# Phase 3 Retraining: Clean Step 0 Scratch Run with Ocean-Only Normalization
+# Target: Retrain from Step 0 to Step 20,000 to eliminate warm-start hysteresis
+# ==============================================================================
+
+experiment:
+  name: "phase3_retrain_scratch_20k"
+  description: "Clean scratch retraining from Step 0 with ocean-only standardized inputs, skill-focused loss weighting, and 20k cosine schedule"
+  run_dir: "checkpoints/phase3_retrain_scratch_20k"
+  seed: 42
+
+data:
+  inputs_zarr: "data/processed/phase2_dataset/oceanembed_training_inputs.zarr"
+  anomaly_targets_zarr: "data/processed/phase2_dataset/oceanembed_anomaly_targets.zarr"
+  aux_targets_zarr: "data/processed/phase2_dataset/oceanembed_auxiliary_targets.zarr"
+  scalar_csv: "data/processed/phase2_dataset/scalar_conditioning.csv"
+  sequence_length: 7
+  train_val_split_date: "2025-01-01"
+
+architecture:
+  in_channels: 25
+  convlstm_hidden: [32, 64, 64]
+  unet_stages: [32, 64, 128, 256]
+  spatial_cond_dim: 70
+  non_spatial_cond_dim: 8
+  cond_emb_dim: 128
+  diffusion_timesteps: 1000
+  noise_schedule: "cosine"
+  use_checkpointing: true
+  normalize_inputs: true
+  norm_stats_path: "data/processed/channel_normalization_stats_ocean_only.json"
+
+ablations:
+  region_conditioning_enabled: true
+  depth_cascade_enabled: true
+  regional_loss_boost_enabled: true
+
+training:
+  batch_size: 4
+  num_workers: 2
+  learning_rate: 0.0002
+  weight_decay: 0.0001
+  min_lr: 0.00001
+  min_lr_ratio: 0.05
+  lr_warmup_steps: 500
+  epochs: 340
+  max_steps: 20000
+  warm_restart: false
+  init_from_checkpoint: null
+  skill_focused_loss: true
+  augmentation_enabled: true
+  checkpoint_interval_steps: 250
+  val_interval_steps: 250
+  save_best_only: false
+  precision: "bf16"
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+
+evaluation:
+  val_sample_size: 61

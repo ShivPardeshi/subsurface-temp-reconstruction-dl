@@ -1,0 +1,30 @@
+{
+  "baseline_20k": {
+    "overall_rmse": 0.6892356655838588,
+    "overall_bias": -0.013642142271018693,
+    "overall_clim_rmse": 0.6422,
+    "shallow_rmse": 0.47661702917576865,
+    "continuous_rmse": 0.7066563712030113
+  },
+  "warm_started_40k": {
+    "overall_rmse": 0.6697948358343084,
+    "overall_bias": 0.04866703907766127,
+    "overall_clim_rmse": 0.6422202310293325,
+    "continuous_rmse": 0.6883842898434026
+  },
+  "clean_scratch_40k_flatline": {
+    "overall_rmse": 0.7345998859008319,
+    "overall_bias": 0.07467073830516732,
+    "overall_clim_rmse": 0.6422202310293325,
+    "continuous_rmse": 0.752072520507264
+  },
+  "clean_scratch_40k_full_cosine": {
+    "overall_rmse": 0.7266772184600326,
+    "overall_bias": 0.03026221037532873,
+    "overall_clim_rmse": 0.6422202310293325,
+    "shallow_rmse": 0.6043191874709037,
+    "thermo_rmse": 1.05927989978165,
+    "deep_rmse": 0.46215330430582796,
+    "continuous_rmse": null
+  }
+}

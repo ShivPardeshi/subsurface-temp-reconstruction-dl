@@ -1,0 +1,222 @@
+{
+  "Full Architecture (Region + Cascade)": {
+    "overall_rmse": 0.7276217905446286,
+    "overall_mae": 0.49148856500191757,
+    "overall_bias": 0.03816209279810005,
+    "overall_correlation": 0.9991403890769822,
+    "clim_rmse": 0.6422202310293326,
+    "murphy_skill_score": -0.28364055146099587,
+    "shallow_rmse": 0.6022355732512504,
+    "thermo_rmse": 1.0635452986712388,
+    "deep_rmse": 0.4602250369547609,
+    "priority_zones": {
+      "zone1_bob_barrier_layer": {
+        "name": "Bay of Bengal Barrier Layer (0-30m)",
+        "model_rmse": 0.511349605264548,
+        "clim_rmse": 0.3580555970586749,
+        "murphy_skill": -1.0395526280457705
+      },
+      "zone2_thermocline_core": {
+        "name": "Thermocline Core (75-150m)",
+        "model_rmse": 0.8866019309138405,
+        "clim_rmse": 0.8161132049784068,
+        "murphy_skill": -0.18020251487029726
+      },
+      "zone3_as_persian_gulf_water": {
+        "name": "Arabian Sea PGW Zone (200-300m)",
+        "model_rmse": 0.6648533458180078,
+        "clim_rmse": 0.5728870571672462,
+        "murphy_skill": -0.34683283592896297
+      },
+      "zone4_confluence_zone": {
+        "name": "8-10\u00b0N Confluence Zone",
+        "model_rmse": 0.7485962134001701,
+        "clim_rmse": 0.6664393246773567,
+        "murphy_skill": -0.26175205505108434
+      },
+      "zone5_extreme_cyclone_events": {
+        "name": "Extreme Event Windows (Cyclones)",
+        "model_rmse": 0.7276608711036467,
+        "clim_rmse": 0.6422620930374561,
+        "murphy_skill": -0.28361109844096544
+      },
+      "zone6_monsoon_transitions": {
+        "name": "Monsoon Transition Windows",
+        "model_rmse": 0.7276608711036467,
+        "clim_rmse": 0.6422620930374561,
+        "murphy_skill": -0.28361109844096544
+      },
+      "zone7_equatorial_edge": {
+        "name": "Equatorial Boundary Edge (2-5\u00b0N)",
+        "model_rmse": 0.7711019147150764,
+        "clim_rmse": 0.6935988045928794,
+        "murphy_skill": -0.23596704480058173
+      }
+    }
+  },
+  "Ablation: No Region Conditioning": {
+    "overall_rmse": 0.7169549752427918,
+    "overall_mae": 0.4796808452068598,
+    "overall_bias": 0.036993474092918956,
+    "overall_correlation": 0.9991602293852054,
+    "clim_rmse": 0.6422202310293326,
+    "murphy_skill_score": -0.2462805025756083,
+    "shallow_rmse": 0.5900144543693006,
+    "thermo_rmse": 1.0543783715089252,
+    "deep_rmse": 0.44639433417992125,
+    "priority_zones": {
+      "zone1_bob_barrier_layer": {
+        "name": "Bay of Bengal Barrier Layer (0-30m)",
+        "model_rmse": 0.4926827862219067,
+        "clim_rmse": 0.3580555970586749,
+        "murphy_skill": -0.8933628160635796
+      },
+      "zone2_thermocline_core": {
+        "name": "Thermocline Core (75-150m)",
+        "model_rmse": 0.8767963474036788,
+        "clim_rmse": 0.8161132049784068,
+        "murphy_skill": -0.15424141754495602
+      },
+      "zone3_as_persian_gulf_water": {
+        "name": "Arabian Sea PGW Zone (200-300m)",
+        "model_rmse": 0.6565946357446748,
+        "clim_rmse": 0.5728870571672462,
+        "murphy_skill": -0.3135803383244642
+      },
+      "zone4_confluence_zone": {
+        "name": "8-10\u00b0N Confluence Zone",
+        "model_rmse": 0.7338402805043152,
+        "clim_rmse": 0.6664393246773567,
+        "murphy_skill": -0.21250031960657512
+      },
+      "zone5_extreme_cyclone_events": {
+        "name": "Extreme Event Windows (Cyclones)",
+        "model_rmse": 0.7169926397884593,
+        "clim_rmse": 0.6422620930374561,
+        "murphy_skill": -0.24624897589318717
+      },
+      "zone6_monsoon_transitions": {
+        "name": "Monsoon Transition Windows",
+        "model_rmse": 0.7169926397884593,
+        "clim_rmse": 0.6422620930374561,
+        "murphy_skill": -0.24624897589318717
+      },
+      "zone7_equatorial_edge": {
+        "name": "Equatorial Boundary Edge (2-5\u00b0N)",
+        "model_rmse": 0.7645271684059267,
+        "clim_rmse": 0.6935988045928794,
+        "murphy_skill": -0.21498012723811444
+      }
+    }
+  },
+  "Ablation: No Depth Cascade": {
+    "overall_rmse": 0.7279947317256138,
+    "overall_mae": 0.5031309933883372,
+    "overall_bias": 0.01511028333622535,
+    "overall_correlation": 0.9991904863395882,
+    "clim_rmse": 0.6422202310293326,
+    "murphy_skill_score": -0.2849567437839413,
+    "shallow_rmse": 0.5706765407996633,
+    "thermo_rmse": 1.0687019968714313,
+    "deep_rmse": 0.49586736918186125,
+    "priority_zones": {
+      "zone1_bob_barrier_layer": {
+        "name": "Bay of Bengal Barrier Layer (0-30m)",
+        "model_rmse": 0.49234355940329844,
+        "clim_rmse": 0.3580555970586749,
+        "murphy_skill": -0.8907564399196342
+      },
+      "zone2_thermocline_core": {
+        "name": "Thermocline Core (75-150m)",
+        "model_rmse": 0.8848525351059808,
+        "clim_rmse": 0.8161132049784068,
+        "murphy_skill": -0.17554968401182514
+      },
+      "zone3_as_persian_gulf_water": {
+        "name": "Arabian Sea PGW Zone (200-300m)",
+        "model_rmse": 0.6801670961472581,
+        "clim_rmse": 0.5728870571672462,
+        "murphy_skill": -0.4095913172745671
+      },
+      "zone4_confluence_zone": {
+        "name": "8-10\u00b0N Confluence Zone",
+        "model_rmse": 0.7482913186176081,
+        "clim_rmse": 0.6664393246773567,
+        "murphy_skill": -0.260724469633806
+      },
+      "zone5_extreme_cyclone_events": {
+        "name": "Extreme Event Windows (Cyclones)",
+        "model_rmse": 0.7280314407633366,
+        "clim_rmse": 0.6422620930374561,
+        "murphy_skill": -0.28491881874404545
+      },
+      "zone6_monsoon_transitions": {
+        "name": "Monsoon Transition Windows",
+        "model_rmse": 0.7280314407633366,
+        "clim_rmse": 0.6422620930374561,
+        "murphy_skill": -0.28491881874404545
+      },
+      "zone7_equatorial_edge": {
+        "name": "Equatorial Boundary Edge (2-5\u00b0N)",
+        "model_rmse": 0.7739607721136843,
+        "clim_rmse": 0.6935988045928794,
+        "murphy_skill": -0.24514871999975263
+      }
+    }
+  },
+  "Ablation: No Region & No Cascade": {
+    "overall_rmse": 0.7179941585707897,
+    "overall_mae": 0.4901521730741527,
+    "overall_bias": 0.012780400968606758,
+    "overall_correlation": 0.9992268760389086,
+    "clim_rmse": 0.6422202310293326,
+    "murphy_skill_score": -0.24989593885849337,
+    "shallow_rmse": 0.5594779320351448,
+    "thermo_rmse": 1.0641168709926556,
+    "deep_rmse": 0.47635845918264996,
+    "priority_zones": {
+      "zone1_bob_barrier_layer": {
+        "name": "Bay of Bengal Barrier Layer (0-30m)",
+        "model_rmse": 0.4804411763947351,
+        "clim_rmse": 0.3580555970586749,
+        "murphy_skill": -0.8004435509538907
+      },
+      "zone2_thermocline_core": {
+        "name": "Thermocline Core (75-150m)",
+        "model_rmse": 0.8761317741722078,
+        "clim_rmse": 0.8161132049784068,
+        "murphy_skill": -0.15249235176638387
+      },
+      "zone3_as_persian_gulf_water": {
+        "name": "Arabian Sea PGW Zone (200-300m)",
+        "model_rmse": 0.6621978198728834,
+        "clim_rmse": 0.5728870571672462,
+        "murphy_skill": -0.3360954096406559
+      },
+      "zone4_confluence_zone": {
+        "name": "8-10\u00b0N Confluence Zone",
+        "model_rmse": 0.7366858616962398,
+        "clim_rmse": 0.6664393246773567,
+        "murphy_skill": -0.22192187270289288
+      },
+      "zone5_extreme_cyclone_events": {
+        "name": "Extreme Event Windows (Cyclones)",
+        "model_rmse": 0.7180321004164975,
+        "clim_rmse": 0.6422620930374561,
+        "murphy_skill": -0.24986509604335283
+      },
+      "zone6_monsoon_transitions": {
+        "name": "Monsoon Transition Windows",
+        "model_rmse": 0.7180321004164975,
+        "clim_rmse": 0.6422620930374561,
+        "murphy_skill": -0.24986509604335283
+      },
+      "zone7_equatorial_edge": {
+        "name": "Equatorial Boundary Edge (2-5\u00b0N)",
+        "model_rmse": 0.7667977961623592,
+        "clim_rmse": 0.6935988045928794,
+        "murphy_skill": -0.2222077692425486
+      }
+    }
+  }
+}

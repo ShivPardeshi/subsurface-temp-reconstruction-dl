@@ -1,0 +1,68 @@
+# ==============================================================================
+# Phase 4 Retraining: Model V2 Clean Scratch 60k Run with All 10 Fixes
+# Target: Single continuous scratch training from Step 0 to Step 60,000
+# Incorporates:
+# 1. Dynamic prev_mean/std cascade conditioning with 10% dropout
+# 2. Physics-safe spatial translation jitter augmentation
+# 3. Inverse-variance deep layer loss reweighting (500m->1.8x, 700m->2.0x, 1000m->2.2x)
+# 4. Region conditioning OFF (eliminates boundary step-function artifacts)
+# 5. Depth cascade ON with regularized cascade jitter
+# 6. Single-pass 60,000-step cosine schedule (2.5e-4 -> 2.0e-6 with 1,000-step warmup)
+# Host: g2-standard-8 (8 vCPU, 32GB RAM, 1x NVIDIA L4 24GB)
+# ==============================================================================
+
+experiment:
+  name: "phase4_scratch_60k_full"
+  description: "Model V2 clean single-pass scratch retraining from Step 0 to Step 60,000 with all 10 architectural fixes"
+  run_dir: "checkpoints/phase4_scratch_60k_full"
+  seed: 42
+
+data:
+  inputs_zarr: "data/processed/phase2_dataset/oceanembed_training_inputs.zarr"
+  anomaly_targets_zarr: "data/processed/phase2_dataset/oceanembed_anomaly_targets.zarr"
+  aux_targets_zarr: "data/processed/phase2_dataset/oceanembed_auxiliary_targets.zarr"
+  scalar_csv: "data/processed/phase2_dataset/scalar_conditioning.csv"
+  sequence_length: 7
+  train_val_split_date: "2025-01-01"
+
+architecture:
+  in_channels: 25
+  convlstm_hidden: [32, 64, 64]
+  unet_stages: [32, 64, 128, 256]
+  spatial_cond_dim: 70
+  non_spatial_cond_dim: 8
+  cond_emb_dim: 128
+  diffusion_timesteps: 1000
+  noise_schedule: "cosine"
+  use_checkpointing: true
+  normalize_inputs: true
+  norm_stats_path: "data/processed/channel_normalization_stats_ocean_only.json"
+
+ablations:
+  region_conditioning_enabled: false
+  depth_cascade_enabled: true
+  regional_loss_boost_enabled: true
+
+training:
+  batch_size: 4
+  num_workers: 2
+  learning_rate: 0.00025
+  weight_decay: 0.0001
+  min_lr: 0.000002
+  min_lr_ratio: 0.008
+  lr_warmup_steps: 1000
+  epochs: 1050
+  max_steps: 60000
+  warm_restart: false
+  init_from_checkpoint: null
+  skill_focused_loss: true
+  augmentation_enabled: true
+  checkpoint_interval_steps: 500
+  val_interval_steps: 500
+  save_best_only: false
+  precision: "bf16"
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+
+evaluation:
+  val_sample_size: 61

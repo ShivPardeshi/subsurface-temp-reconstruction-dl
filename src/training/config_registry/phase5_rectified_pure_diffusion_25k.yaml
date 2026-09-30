@@ -1,0 +1,76 @@
+# ==============================================================================
+# Phase 5 Production Run: Rectified Pure Diffusion 25k Training on g2-standard-8
+# Target: 25,000-step training with all 8 architectural bottlenecks rectified:
+#   1. Target Normalization (standardized anomalies via anomaly_depth_scales.json)
+#   2. Full 15-depth validation evaluation and checkpoint selection
+#   3. Realistic cascade jitter (sigma=0.35) and 20% cascade dropout
+#   4. Explicit climatology background temperature conditioning (9-dim non-spatial)
+#   5. Min-SNR-gamma loss weighting (gamma=5.0)
+#   6. Multi-depth column training (consecutive and stratified mini-columns)
+#   7. Vertical stratification gradient loss and static stability penalty
+#   8. Quadratic DDIM sampling trajectory
+# Host: g2-standard-8 (8 vCPU, 32GB RAM, 1x NVIDIA L4 24GB)
+# ==============================================================================
+
+experiment:
+  name: "phase5_rectified_pure_diffusion_25k"
+  description: "Rectified Pure Diffusion 25k run with all 8 bottlenecks resolved to beat Climatology standalone"
+  run_dir: "checkpoints/phase5_rectified_pure_diffusion_25k"
+  seed: 42
+
+data:
+  inputs_zarr: "data/processed/phase2_dataset/oceanembed_training_inputs.zarr"
+  anomaly_targets_zarr: "data/processed/phase2_dataset/oceanembed_anomaly_targets.zarr"
+  aux_targets_zarr: "data/processed/phase2_dataset/oceanembed_auxiliary_targets.zarr"
+  scalar_csv: "data/processed/phase2_dataset/scalar_conditioning.csv"
+  sequence_length: 7
+  train_val_split_date: "2025-01-01"
+
+architecture:
+  in_channels: 25
+  convlstm_hidden: [32, 64, 64]
+  unet_stages: [32, 64, 128, 256]
+  spatial_cond_dim: 70
+  non_spatial_cond_dim: 9
+  cond_emb_dim: 128
+  diffusion_timesteps: 1000
+  noise_schedule: "cosine"
+  use_checkpointing: true
+  normalize_inputs: true
+  norm_stats_path: "data/processed/channel_normalization_stats_ocean_only.json"
+
+ablations:
+  region_conditioning_enabled: false
+  depth_cascade_enabled: true
+  regional_loss_boost_enabled: true
+
+training:
+  batch_size: 4
+  num_workers: 4
+  learning_rate: 0.00025
+  weight_decay: 0.0001
+  min_lr: 0.00001
+  min_lr_ratio: 0.04
+  lr_warmup_steps: 500
+  epochs: 500
+  max_steps: 25000
+  warm_restart: false
+  init_from_checkpoint: null
+  skill_focused_loss: true
+  inverse_variance_loss: false
+  use_min_snr: true
+  min_snr_gamma: 5.0
+  augmentation_enabled: true
+  checkpoint_interval_steps: 500
+  val_interval_steps: 500
+  save_best_only: false
+  precision: "bf16"
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+
+evaluation:
+  num_val_dates: 10
+  eval_depths: [0, 5, 10, 20, 30, 50, 75, 100, 125, 150, 200, 250, 300, 500, 700, 1000]
+  ddim_steps: 15
+  eta: 0.0
+  schedule_type: "quadratic"

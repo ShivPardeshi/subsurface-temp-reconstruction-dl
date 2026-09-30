@@ -1,0 +1,314 @@
+{
+  "checkpoint_path": "checkpoints/phase3_retrain_scratch_40k/last_checkpoint.pt",
+  "checkpoint_sha256": "a62285a0d934686c13c616d9fece45db39e595ee0986341181415121217b07fe",
+  "evaluation_timestamp": "2026-09-18T03:55:15.865790+00:00",
+  "device": "cuda",
+  "ddim_eta": 0.0,
+  "multi_seasonal_dates": [
+    15,
+    60,
+    105,
+    150,
+    195,
+    240,
+    285,
+    318,
+    331,
+    358
+  ],
+  "overall_rmse": 0.7607874498740842,
+  "overall_mae": 0.5329563009583504,
+  "overall_bias": -0.08532372782661782,
+  "overall_correlation": 0.9990226334911638,
+  "murphy_skill_score": -0.40332646198626554,
+  "climatology_overall_rmse": 0.6422202310293325,
+  "spot_held_out_test_rmse": 0.799831667006168,
+  "spot_held_out_test_skill": -0.363346999941196,
+  "continuous_test_results": {
+    "num_days": 61,
+    "start_day": 298,
+    "end_day": 358,
+    "start_date": "2025-10-26",
+    "end_date": "2025-12-25",
+    "continuous_rmse": 0.7719789724463504,
+    "continuous_mae": 0.5389756236801175,
+    "continuous_bias": -0.06995199481813312,
+    "continuous_clim_rmse": 0.6590662861006051,
+    "continuous_murphy_skill": -0.3719956971553493,
+    "continuous_correlation": 0.9989913117981104,
+    "early_window_nov": {
+      "days": "298-327 (Nov 1 - Nov 30)",
+      "rmse": 0.7534261078380103,
+      "clim_rmse": 0.6470607130117328,
+      "murphy_skill": -0.3557863801803762
+    },
+    "late_window_dec": {
+      "days": "328-358 (Dec 1 - Dec 31)",
+      "rmse": 0.7895183621370916,
+      "clim_rmse": 0.6704799327839134,
+      "murphy_skill": -0.38660544672491004
+    }
+  },
+  "depthwise_metrics": {
+    "0m": {
+      "depth_m": 0,
+      "rmse": 0.5977388172322143,
+      "mae": 0.44886937838983,
+      "bias": -0.07095727775350803,
+      "clim_rmse": 0.4471689742247401,
+      "correlation": 0.9660662143022861,
+      "murphy_skill_score": -0.7868150135834311,
+      "ssim": 0.985729802970903
+    },
+    "5m": {
+      "depth_m": 5,
+      "rmse": 0.6427237203856735,
+      "mae": 0.49154601217415345,
+      "bias": -0.0712223371187041,
+      "clim_rmse": 0.4471689742798645,
+      "correlation": 0.9607796002424562,
+      "murphy_skill_score": -1.0658811342138974,
+      "ssim": 0.980458197618612
+    },
+    "10m": {
+      "depth_m": 10,
+      "rmse": 0.6540501385247969,
+      "mae": 0.5021121840527426,
+      "bias": -0.07941628519911371,
+      "clim_rmse": 0.44460336053367716,
+      "correlation": 0.9903443969972441,
+      "murphy_skill_score": -1.1640963970106881,
+      "ssim": 0.9790310291329415
+    },
+    "20m": {
+      "depth_m": 20,
+      "rmse": 0.6629004729733752,
+      "mae": 0.5014616833808915,
+      "bias": -0.07756899580041123,
+      "clim_rmse": 0.4655123286483249,
+      "correlation": 0.994074333370073,
+      "murphy_skill_score": -1.027842790518548,
+      "ssim": 0.9793024919566853
+    },
+    "30m": {
+      "depth_m": 30,
+      "rmse": 0.6954560868158383,
+      "mae": 0.5174793958279221,
+      "bias": -0.08639038480527221,
+      "clim_rmse": 0.5101446195298104,
+      "correlation": 0.9955485393685908,
+      "murphy_skill_score": -0.8584582279035273,
+      "ssim": 0.97947370627307
+    },
+    "50m": {
+      "depth_m": 50,
+      "rmse": 0.7788687722348557,
+      "mae": 0.5682380360125069,
+      "bias": -0.10839665812173421,
+      "clim_rmse": 0.6383284283929012,
+      "correlation": 0.9960756409233547,
+      "murphy_skill_score": -0.48881319938825096,
+      "ssim": 0.9780506450249226
+    },
+    "75m": {
+      "depth_m": 75,
+      "rmse": 0.9632853855566738,
+      "mae": 0.6988473091214811,
+      "bias": -0.09417770629648836,
+      "clim_rmse": 0.8667824656060924,
+      "correlation": 0.994785310756571,
+      "murphy_skill_score": -0.23506469792144857,
+      "ssim": 0.9749271386909719
+    },
+    "100m": {
+      "depth_m": 100,
+      "rmse": 1.1708572383198275,
+      "mae": 0.848144334626303,
+      "bias": -0.11669788355478906,
+      "clim_rmse": 1.09777962307476,
+      "correlation": 0.9916765617283525,
+      "murphy_skill_score": -0.13756850588789127,
+      "ssim": 0.9686113571017978
+    },
+    "125m": {
+      "depth_m": 125,
+      "rmse": 1.1858310496192468,
+      "mae": 0.8536861800566676,
+      "bias": -0.08884630403220274,
+      "clim_rmse": 1.1240040594295362,
+      "correlation": 0.9889621852770889,
+      "murphy_skill_score": -0.11303770301838423,
+      "ssim": 0.963741395844844
+    },
+    "150m": {
+      "depth_m": 150,
+      "rmse": 1.0055958824522193,
+      "mae": 0.7295798356640686,
+      "bias": -0.07037788527365235,
+      "clim_rmse": 0.9331105065705328,
+      "correlation": 0.9900017050779292,
+      "murphy_skill_score": -0.16139730471990243,
+      "ssim": 0.9687637868360577
+    },
+    "200m": {
+      "depth_m": 200,
+      "rmse": 0.6945924375305714,
+      "mae": 0.5044149758686568,
+      "bias": -0.103634809324064,
+      "clim_rmse": 0.5938648510771385,
+      "correlation": 0.9936133340329099,
+      "murphy_skill_score": -0.3679960959996518,
+      "ssim": 0.9743906969969797
+    },
+    "300m": {
+      "depth_m": 300,
+      "rmse": 0.49818862754808657,
+      "mae": 0.3749114366376099,
+      "bias": -0.0744321898206439,
+      "clim_rmse": 0.3518449234763687,
+      "correlation": 0.9953870068242269,
+      "murphy_skill_score": -1.0048645663790214,
+      "ssim": 0.9725793139598585
+    },
+    "500m": {
+      "depth_m": 500,
+      "rmse": 0.40988489684400764,
+      "mae": 0.3187063087597908,
+      "bias": -0.09622189864470773,
+      "clim_rmse": 0.21367278101478754,
+      "correlation": 0.9960204591797958,
+      "murphy_skill_score": -2.6798102688855727,
+      "ssim": 0.962371524850587
+    },
+    "700m": {
+      "depth_m": 700,
+      "rmse": 0.4103397959688293,
+      "mae": 0.3196138601472875,
+      "bias": -0.07352947373230875,
+      "clim_rmse": 0.20515194220926897,
+      "correlation": 0.9948826664832072,
+      "murphy_skill_score": -3.0007002248474146,
+      "ssim": 0.9542481934268058
+    },
+    "1000m": {
+      "depth_m": 1000,
+      "rmse": 0.41326096692433506,
+      "mae": 0.31673358365534743,
+      "bias": -0.06798582792166698,
+      "clim_rmse": 0.2235433460542078,
+      "correlation": 0.9921856926864241,
+      "murphy_skill_score": -2.417631866416796,
+      "ssim": 0.9413776986872568
+    }
+  },
+  "zone_metrics": {
+    "zone1_bob_barrier_layer": {
+      "zone_id": 1,
+      "name": "Bay of Bengal Barrier Layer (0-30m)",
+      "depth_range": "0-30m",
+      "rmse": 0.572155018198592,
+      "mae": 0.44552370703131716,
+      "clim_rmse": 0.3580555970586749,
+      "skill_score": -1.5534448886967804
+    },
+    "zone2_thermocline_core": {
+      "zone_id": 2,
+      "name": "Thermocline Core (75-150m)",
+      "depth_range": "20-200m",
+      "rmse": 0.9171449069699564,
+      "mae": 0.6527850796426447,
+      "clim_rmse": 0.8161132049784068,
+      "skill_score": -0.2629178673128414
+    },
+    "zone3_as_persian_gulf_water": {
+      "zone_id": 3,
+      "name": "Arabian Sea PGW Zone (200-300m)",
+      "depth_range": "200-300m",
+      "rmse": 0.6792580048544271,
+      "mae": 0.49390147800673345,
+      "clim_rmse": 0.5728870571672462,
+      "skill_score": -0.40582579898365134
+    },
+    "zone4_confluence_zone": {
+      "zone_id": 4,
+      "name": "8-10\u00b0N Confluence Zone",
+      "depth_range": "0-1000m",
+      "rmse": 0.7889365065958494,
+      "mae": 0.5380928783737364,
+      "clim_rmse": 0.6664393246773567,
+      "skill_score": -0.40140245563661736
+    },
+    "zone5_extreme_cyclone_events": {
+      "zone_id": 5,
+      "name": "Extreme Event Windows (Cyclones)",
+      "depth_range": "0-1000m",
+      "rmse": 0.7585535713965439,
+      "mae": 0.5304107604522981,
+      "clim_rmse": 0.6354734723011134,
+      "skill_score": -0.42487794197466733
+    },
+    "zone6_monsoon_transitions": {
+      "zone_id": 6,
+      "name": "Monsoon Transition Windows",
+      "depth_range": "0-1000m",
+      "rmse": 0.7884184598916899,
+      "mae": 0.5448323771244183,
+      "clim_rmse": 0.6752764369395887,
+      "skill_score": -0.363171121155873
+    },
+    "zone7_equatorial_edge": {
+      "zone_id": 7,
+      "name": "Equatorial Boundary Edge (2-5\u00b0N)",
+      "depth_range": "0-1000m",
+      "rmse": 0.8072755852829722,
+      "mae": 0.5618598955382207,
+      "clim_rmse": 0.6935988045928793,
+      "skill_score": -0.35464957283924514
+    }
+  },
+  "aux_results": {
+    "mixed_layer_depth": {
+      "mae_m": 3.8478355407714844,
+      "rmse_m": 5.240432606405908,
+      "bias_m": 0.8592323303222656,
+      "correlation": 0.9574777482801999,
+      "unit": "meters"
+    },
+    "bob_barrier_layer_thickness": {
+      "mae_m": 31.545089280605318,
+      "rmse_m": 34.11966383829935,
+      "bias_m": 31.545089280605318,
+      "correlation": 0.9254100938450304,
+      "domain": "Bay of Bengal (weighted)",
+      "unit": "meters"
+    },
+    "as_salinity_max_depth": {
+      "mae_m": 70.29363403320312,
+      "rmse_m": 70.5533010227163,
+      "bias_m": 70.29363403320312,
+      "correlation": 0.7563417949750882,
+      "pred_mean_m": 112.6224868774414,
+      "true_mean_m": 42.328852844238284,
+      "pred_std_m": 8.53656918606561,
+      "true_std_m": 4.13546397388312,
+      "diagnostic": "ok",
+      "domain": "Arabian Sea (weighted)",
+      "unit": "meters"
+    },
+    "as_salinity_max_strength": {
+      "mae_psu": 0.14793291240930556,
+      "rmse_psu": 0.14805279799233162,
+      "bias_psu": 0.14793291240930556,
+      "correlation": 0.7197781485261057,
+      "pred_mean_psu": 0.22137534916400908,
+      "true_mean_psu": 0.07344243675470352,
+      "domain": "Arabian Sea (weighted)",
+      "unit": "PSU"
+    }
+  },
+  "heat_flux": {
+    "relative_rmse_pct": 6.171814111386007,
+    "correlation": 0.998721141059311
+  },
+  "calibration": {}
+}

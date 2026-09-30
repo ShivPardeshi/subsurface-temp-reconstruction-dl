@@ -1,0 +1,146 @@
+# Data sources configuration specifying paths, native variables, and coordinate conventions
+
+sources:
+  sst:
+    provider: "Copernicus / Met Office (OSTIA)"
+    raw_subfolder: "sst_sss_ssh_currents_winds/india_sst"
+    file_pattern: "*.nc"
+    variable_name: "analysed_sst"
+    native_lat_name: "latitude"
+    native_lon_name: "longitude"
+    native_time_name: "time"
+    unit: "Kelvin"
+    channel_index: 1
+    channel_name: "sst"
+
+  sss:
+    provider: "Copernicus (SMAP/SMOS)"
+    raw_subfolder: "sst_sss_ssh_currents_winds/india_sss"
+    file_pattern: "*.nc"
+    variable_name: "sos"
+    native_lat_name: "latitude"
+    native_lon_name: "longitude"
+    native_time_name: "time"
+    unit: "psu"
+    channel_index: 2
+    channel_name: "sss"
+
+  ssh:
+    provider: "Copernicus / C3S (DUACS)"
+    raw_subfolder: "sst_sss_ssh_currents_winds/india_ssh"
+    file_pattern: "*.nc"
+    variable_name: "sla"
+    native_lat_name: "latitude"
+    native_lon_name: "longitude"
+    native_time_name: "time"
+    unit: "m"
+    channel_index: 3
+    channel_name: "ssh"
+
+  winds:
+    provider: "NASA JPL PO.DAAC (CCMP V3.1)"
+    raw_subfolder: "sst_sss_ssh_currents_winds/CCMP_WINDS_10M6HR_L4_V3.1_3.1-20260911_183300"
+    file_pattern: "*.nc4"
+    u_variable_name: "uwnd"
+    v_variable_name: "vwnd"
+    native_lat_name: "latitude"
+    native_lon_name: "longitude"
+    native_time_name: "time"
+    unit: "m/s"
+    channel_indices: [4, 5]
+    channel_names: ["wind_u", "wind_v"]
+
+  currents:
+    provider: "NASA JPL PO.DAAC (OSCAR L4)"
+    raw_subfolder: "sst_sss_ssh_currents_winds/OSCAR_L4_OC_FINAL_V2.0_2.0-20260910_134123"
+    file_pattern: "*.nc"
+    u_variable_name: "u"
+    v_variable_name: "v"
+    native_lat_name: "latitude"
+    native_lon_name: "longitude"
+    native_time_name: "time"
+    unit: "m/s"
+    channel_indices: [6, 7]
+    channel_names: ["current_u", "current_v"]
+
+  precipitation:
+    provider: "NASA GES DISC (GPM IMERG)"
+    raw_subfolder: "precipitation/GPM_3IMERGDF_07-20260912_054531"
+    file_pattern: "*.nc4"
+    variable_name: "precipitation"
+    native_lat_name: "lat"
+    native_lon_name: "lon"
+    native_time_name: "time"
+    unit: "mm/day"
+    channel_index: 14
+    channel_name: "precipitation"
+
+  heat_flux:
+    provider: "ERA5 Surface Latent Heat Flux"
+    raw_subfolder: "heat_flux/latent_heat_flux"
+    file_pattern: "*.nc"
+    variable_name: "slhf"
+    native_lat_name: "latitude"
+    native_lon_name: "longitude"
+    native_time_name: "valid_time"
+    unit: "J/m^2"
+    channel_index: 15
+    channel_name: "latent_heat_flux"
+
+  chlorophyll:
+    provider: "NASA Ocean Color (MODIS Aqua L3)"
+    raw_subfolder: "chlorophyll/MODISA_L3m_CHL_2022.0-20260911_202810"
+    file_pattern: "*DAY.CHL.chlor_a.4km.nc"
+    variable_name: "chlor_a"
+    native_lat_name: "lat"
+    native_lon_name: "lon"
+    unit: "mg/m^3"
+    channel_index: 17
+    channel_name: "chlorophyll"
+
+  bathymetry:
+    provider: "GEBCO 2026"
+    raw_subfolder: "bathymetry/GEBCO_12_Sep_2026_b10c08560435 (1)"
+    file_pattern: "gebco_2026_sub_ice_n30.0_s2.0_w45.0_e105.0.nc"
+    variable_name: "elevation"
+    native_lat_name: "lat"
+    native_lon_name: "lon"
+    unit: "m"
+    channel_index: 20
+    channel_name: "bathymetry"
+
+  river_discharge:
+    provider: "ESA CCI River Discharge"
+    raw_subfolder: "river_discharge/combined-1789190704725/neodc/esacci/river_discharge/data/RD/RD-multi/v1.2"
+    netcdf_subfolder: "NetCDF"
+    csv_subfolder: "CSV"
+    unit: "m^3/s"
+
+  glorys_target:
+    provider: "Copernicus Marine (GLORYS Global Ocean Physics)"
+    raw_subfolder: "glorys"
+    file_pattern: "global_phy_subset.nc"
+    temp_variable: "thetao"
+    salinity_variable: "so"
+    native_lat_name: "latitude"
+    native_lon_name: "longitude"
+    native_depth_name: "depth"
+    native_time_name: "time"
+
+  argo_validation:
+    provider: "INCOIS Live Access Server (LAS)"
+    raw_subfolder: "argo"
+    file_pattern: "*.nc"
+    variable_name: "TEMP"
+
+  climate_indices:
+    provider: "NOAA CPC (ONI) / NOAA PSL (DMI)"
+    raw_subfolder: "climate_indices"
+    oni_file: "oni.data.txt"
+    dmi_file: "dmi.had.long.nc"
+
+  ibtracs:
+    provider: "NOAA NCEI IBTrACS"
+    raw_subfolder: "ibtracs"
+    nc_file: "IBTrACS.NI.v04r01.nc"
+    csv_file: "ibtracs.NI.list.v04r01.csv"

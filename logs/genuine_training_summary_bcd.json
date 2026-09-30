@@ -1,0 +1,71 @@
+{
+  "stage_b": {
+    "stage": "baseline",
+    "config": "src/training/config_registry/baseline_config.yaml",
+    "device": "cuda:0",
+    "gpu_name": "NVIDIA L4",
+    "start_time_utc": "2026-09-14T05:22:40.816267+00:00",
+    "end_time_utc": "2026-09-14T05:38:25.093657+00:00",
+    "wall_clock_seconds": 944.28,
+    "wall_clock_minutes": 15.74,
+    "start_step": 0,
+    "end_step": 2000,
+    "best_val_rmse": 0.694,
+    "budget": {
+      "run_name": "baseline_full_architecture",
+      "total_steps": 2000,
+      "elapsed_seconds": 942.0,
+      "gpu_hours": 0.2617,
+      "steps_per_second": 7.62,
+      "avg_step_ms": 131.2,
+      "est_cost_usd": 0.1832,
+      "hourly_rate_usd": 0.7
+    }
+  },
+  "stage_c": {
+    "stage": "ablation_no_region",
+    "config": "src/training/config_registry/no_region_ablation.yaml",
+    "device": "cuda:0",
+    "gpu_name": "NVIDIA L4",
+    "start_time_utc": "2026-09-14T05:38:25.093965+00:00",
+    "end_time_utc": "2026-09-14T05:46:18.082865+00:00",
+    "wall_clock_seconds": 472.99,
+    "wall_clock_minutes": 7.88,
+    "start_step": 0,
+    "end_step": 1000,
+    "best_val_rmse": 1.1674,
+    "budget": {
+      "run_name": "ablation_no_region_conditioning",
+      "total_steps": 1000,
+      "elapsed_seconds": 472.9,
+      "gpu_hours": 0.1314,
+      "steps_per_second": 7.76,
+      "avg_step_ms": 128.8,
+      "est_cost_usd": 0.092,
+      "hourly_rate_usd": 0.7
+    }
+  },
+  "stage_d": {
+    "stage": "ablation_no_cascade",
+    "config": "src/training/config_registry/no_cascade_ablation.yaml",
+    "device": "cuda:0",
+    "gpu_name": "NVIDIA L4",
+    "start_time_utc": "2026-09-14T05:46:18.083414+00:00",
+    "end_time_utc": "2026-09-14T05:54:11.869037+00:00",
+    "wall_clock_seconds": 473.79,
+    "wall_clock_minutes": 7.9,
+    "start_step": 0,
+    "end_step": 1000,
+    "best_val_rmse": 0.9963,
+    "budget": {
+      "run_name": "ablation_no_depth_cascade",
+      "total_steps": 1000,
+      "elapsed_seconds": 473.6,
+      "gpu_hours": 0.1315,
+      "steps_per_second": 7.6,
+      "avg_step_ms": 131.5,
+      "est_cost_usd": 0.0921,
+      "hourly_rate_usd": 0.7
+    }
+  }
+}

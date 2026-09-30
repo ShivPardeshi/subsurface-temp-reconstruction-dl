@@ -1,0 +1,21 @@
+{
+  "checkpoint": "checkpoints/phase3_retrain_scratch_40k_full/last_checkpoint.pt",
+  "sha256": "8cc1b8fe792d9abd7614bdfcefef0bb847e488f4ca7c1972e55ea059142cab38",
+  "checkpoint_step": 40000,
+  "checkpoint_epoch": 680,
+  "stored_metrics": {
+    "best_val_rmse": 0.6263712644577026
+  },
+  "reproduced_proxy_val_rmse": 0.6186897826514413,
+  "depth_tier_results": {
+    "shallow_rmse": 0.6026490299950077,
+    "shallow_clim_rmse": 0.46358205146971604,
+    "thermo_rmse": 1.0618560171409985,
+    "thermo_clim_rmse": 1.0112507461810265,
+    "deep_rmse": 0.4644967089263341,
+    "deep_clim_rmse": 0.3504811880329395,
+    "overall_rmse": 0.7283258003205355,
+    "overall_clim_rmse": 0.6422202310293325,
+    "overall_bias": 0.04207609242695177
+  }
+}

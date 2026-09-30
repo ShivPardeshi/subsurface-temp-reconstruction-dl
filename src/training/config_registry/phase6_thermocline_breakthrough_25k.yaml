@@ -1,0 +1,80 @@
+# ==============================================================================
+# Phase 6 Production Run: Thermocline Breakthrough & All-Depth Domination (25k Steps)
+# Incorporates all 16 bottlenecks resolved:
+#   Bottlenecks 1-8: Target normalization, 15-depth validation, realistic cascade jitter,
+#                    continuous depth embedding, Min-SNR-gamma, multi-depth column training,
+#                    vertical stratification loss, quadratic DDIM trajectory.
+#   Bottlenecks 9-16:
+#     9. Physical variance loss weighting w_var(d) = (sigma_d / bar_sigma)^1.25
+#     10. Tri-stratum balanced mini-column sampling (Surface, Thermocline, Deep)
+#     11. Direct SSHA and horizontal gradient magnitude injection into spatial_cond (72 channels)
+#     12. Vertical climatological lapse rate Gamma_clim(d) and layer thickness dz conditioning
+#     13. Sobel horizontal gradient consistency loss on clean estimate x0_hat
+#     14. Active auxiliary head conditioning (MLD, BLT, Salinity Max depth) into denoiser
+#     15. Depth-adaptive cascade training jitter matching inference error distribution
+#     16. 25-step quadratic DDIM reverse sampling trajectory
+# ==============================================================================
+
+experiment:
+  name: "phase6_thermocline_breakthrough_25k"
+  description: "Phase 6 Thermocline Breakthrough 25k run with all 16 bottlenecks resolved to beat Climatology across all 15 depths"
+  run_dir: "checkpoints/phase6_thermocline_breakthrough_25k"
+  seed: 42
+
+data:
+  inputs_zarr: "data/processed/phase2_dataset/oceanembed_training_inputs.zarr"
+  anomaly_targets_zarr: "data/processed/phase2_dataset/oceanembed_anomaly_targets.zarr"
+  aux_targets_zarr: "data/processed/phase2_dataset/oceanembed_auxiliary_targets.zarr"
+  scalar_csv: "data/processed/phase2_dataset/scalar_conditioning.csv"
+  sequence_length: 7
+  train_val_split_date: "2025-01-01"
+
+architecture:
+  in_channels: 25
+  convlstm_hidden: [32, 64, 64]
+  unet_stages: [32, 64, 128, 256]
+  unet_in_channels: 74
+  spatial_cond_dim: 72
+  non_spatial_cond_dim: 14
+  cond_emb_dim: 128
+  diffusion_timesteps: 1000
+  noise_schedule: "cosine"
+  use_checkpointing: true
+  normalize_inputs: true
+  norm_stats_path: "data/processed/channel_normalization_stats_ocean_only.json"
+
+ablations:
+  region_conditioning_enabled: false
+  depth_cascade_enabled: true
+  regional_loss_boost_enabled: true
+
+training:
+  batch_size: 4
+  num_workers: 4
+  learning_rate: 0.00025
+  weight_decay: 0.0001
+  min_lr: 0.00001
+  min_lr_ratio: 0.04
+  lr_warmup_steps: 500
+  epochs: 500
+  max_steps: 25000
+  warm_restart: false
+  init_from_checkpoint: null
+  skill_focused_loss: true
+  inverse_variance_loss: false
+  use_min_snr: true
+  min_snr_gamma: 5.0
+  augmentation_enabled: true
+  checkpoint_interval_steps: 500
+  val_interval_steps: 500
+  save_best_only: false
+  precision: "bf16"
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+
+evaluation:
+  num_val_dates: 10
+  eval_depths: [0, 5, 10, 20, 30, 50, 75, 100, 125, 150, 200, 300, 500, 700, 1000]
+  ddim_steps: 25
+  eta: 0.0
+  schedule_type: "quadratic"

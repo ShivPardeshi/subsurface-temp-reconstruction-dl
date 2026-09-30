@@ -1,0 +1,215 @@
+{
+  "classical_ml_baseline": {
+    "model_type": "Multi-Output Ridge Regression (45 surface/lag/scalar features)",
+    "train_samples": 231,
+    "multi_seasonal_rmse": 0.6230562173825672,
+    "multi_seasonal_bias": 0.00045961514720574664,
+    "multi_seasonal_clim_rmse": 0.6422202310293326,
+    "multi_seasonal_skill_score": 0.10852598382768497,
+    "continuous_test_rmse": 0.6611726417216305,
+    "continuous_test_bias": 0.010071571148376916,
+    "continuous_test_clim_rmse": 0.659066286100605,
+    "continuous_test_skill_score": 0.051202759303349166
+  },
+  "training_vs_val_loss_dynamics": {
+    "initial_total_loss": 12.8754,
+    "final_total_loss": -5.8861,
+    "initial_diff_loss": 1.0267,
+    "final_diff_loss": 0.0382,
+    "initial_aux_loss": 11.4323,
+    "final_aux_loss": 0.0012,
+    "milestones": {
+      "step_500": {
+        "step": 500,
+        "total_loss": 3.8021,
+        "diffusion_loss": 0.1074,
+        "auxiliary_loss": 3.8391
+      },
+      "step_2000": {
+        "step": 2000,
+        "total_loss": 0.1944,
+        "diffusion_loss": 0.1878,
+        "auxiliary_loss": 0.423
+      },
+      "step_5000": {
+        "step": 5000,
+        "total_loss": -0.6262,
+        "diffusion_loss": 0.15,
+        "auxiliary_loss": 0.2952
+      },
+      "step_10000": {
+        "step": 10000,
+        "total_loss": -2.3658,
+        "diffusion_loss": 0.1761,
+        "auxiliary_loss": 0.0184
+      },
+      "step_20000": {
+        "step": 20000,
+        "total_loss": -4.9267,
+        "diffusion_loss": 0.0279,
+        "auxiliary_loss": 0.003
+      },
+      "step_30000": {
+        "step": 30000,
+        "total_loss": -5.6976,
+        "diffusion_loss": 0.025,
+        "auxiliary_loss": 0.0012
+      },
+      "step_35000": {
+        "step": 35000,
+        "total_loss": -5.9172,
+        "diffusion_loss": 0.0568,
+        "auxiliary_loss": 0.0006
+      },
+      "step_40000": {
+        "step": 40000,
+        "total_loss": -5.8861,
+        "diffusion_loss": 0.0382,
+        "auxiliary_loss": 0.0012
+      }
+    },
+    "overfitting_diagnostic": "Smooth asymptotic loss descent from +12.8754 down to -6.1392 with zero divergence. Auxiliary loss converged from 11.43 to 0.0004."
+  },
+  "theoretical_anomaly_ceilings": {
+    "overall_anomaly_variance": 0.4523393511772156,
+    "overall_anomaly_std": 0.672561764717102,
+    "overall_climatology_rmse": 0.672561764717102,
+    "depthwise_ceilings": {
+      "0m": {
+        "depth_m": 0,
+        "anomaly_mean": 6.666101004526581e-09,
+        "anomaly_variance": 0.2027871012687683,
+        "anomaly_std": 0.4503189027309418,
+        "climatology_mse": 0.20278710126876837,
+        "climatology_rmse": 0.4503188884210481,
+        "signal_to_climatology_ratio": 0.999997811133526
+      },
+      "5m": {
+        "depth_m": 5,
+        "anomaly_mean": 6.666101004526581e-09,
+        "anomaly_variance": 0.2027871012687683,
+        "anomaly_std": 0.4503189027309418,
+        "climatology_mse": 0.20278710126876837,
+        "climatology_rmse": 0.4503188884210481,
+        "signal_to_climatology_ratio": 0.999997811133526
+      },
+      "10m": {
+        "depth_m": 10,
+        "anomaly_mean": -4.538615261395762e-09,
+        "anomaly_variance": 0.20429404079914093,
+        "anomaly_std": 0.45198899507522583,
+        "climatology_mse": 0.20429404079914096,
+        "climatology_rmse": 0.45198898305062807,
+        "signal_to_climatology_ratio": 0.9999978141652708
+      },
+      "20m": {
+        "depth_m": 20,
+        "anomaly_mean": -2.122045650310156e-09,
+        "anomaly_variance": 0.23406819999217987,
+        "anomaly_std": 0.48380595445632935,
+        "climatology_mse": 0.23406819999217987,
+        "climatology_rmse": 0.48380595282838335,
+        "signal_to_climatology_ratio": 0.9999979364247493
+      },
+      "30m": {
+        "depth_m": 30,
+        "anomaly_mean": 9.888069252284026e-10,
+        "anomaly_variance": 0.2880687117576599,
+        "anomaly_std": 0.536720335483551,
+        "climatology_mse": 0.2880687117576599,
+        "climatology_rmse": 0.5367203291823963,
+        "signal_to_climatology_ratio": 0.9999981485758227
+      },
+      "50m": {
+        "depth_m": 50,
+        "anomaly_mean": 9.87578108180287e-09,
+        "anomaly_variance": 0.4457399845123291,
+        "anomaly_std": 0.6676375865936279,
+        "climatology_mse": 0.4457399845123292,
+        "climatology_rmse": 0.6676376146625722,
+        "signal_to_climatology_ratio": 0.999998460141577
+      },
+      "75m": {
+        "depth_m": 75,
+        "anomaly_mean": -3.4137335180872697e-09,
+        "anomaly_variance": 0.8266679644584656,
+        "anomaly_std": 0.9092128276824951,
+        "climatology_mse": 0.8266679644584656,
+        "climatology_rmse": 0.9092128268224473,
+        "signal_to_climatology_ratio": 0.999998901094635
+      },
+      "100m": {
+        "depth_m": 100,
+        "anomaly_mean": -6.9794112711463185e-09,
+        "anomaly_variance": 1.3490427732467651,
+        "anomaly_std": 1.1614830493927002,
+        "climatology_mse": 1.3490427732467651,
+        "climatology_rmse": 1.1614830060085963,
+        "signal_to_climatology_ratio": 0.9999991763847879
+      },
+      "125m": {
+        "depth_m": 125,
+        "anomaly_mean": 3.505709500473131e-09,
+        "anomaly_variance": 1.4166032075881958,
+        "anomaly_std": 1.1902114152908325,
+        "climatology_mse": 1.4166032075881958,
+        "climatology_rmse": 1.190211412980146,
+        "signal_to_climatology_ratio": 0.9999991617552443
+      },
+      "150m": {
+        "depth_m": 150,
+        "anomaly_mean": 4.4041379432258054e-09,
+        "anomaly_variance": 0.9976550936698914,
+        "anomaly_std": 0.9988268613815308,
+        "climatology_mse": 0.9976550936698914,
+        "climatology_rmse": 0.9988268587046963,
+        "signal_to_climatology_ratio": 0.9999990015064589
+      },
+      "200m": {
+        "depth_m": 200,
+        "anomaly_mean": -6.659924833840591e-10,
+        "anomaly_variance": 0.4096401631832123,
+        "anomaly_std": 0.6400313973426819,
+        "climatology_mse": 0.4096401631832123,
+        "climatology_rmse": 0.6400313767177452,
+        "signal_to_climatology_ratio": 0.999998469803874
+      },
+      "300m": {
+        "depth_m": 300,
+        "anomaly_mean": 1.7894916659599858e-09,
+        "anomaly_variance": 0.14177316427230835,
+        "anomaly_std": 0.3765277862548828,
+        "climatology_mse": 0.14177316427230835,
+        "climatology_rmse": 0.37652777357362144,
+        "signal_to_climatology_ratio": 0.9999973778398681
+      },
+      "500m": {
+        "depth_m": 500,
+        "anomaly_mean": -9.079541007928071e-10,
+        "anomaly_variance": 0.053651709109544754,
+        "anomaly_std": 0.2316283881664276,
+        "climatology_mse": 0.053651709109544754,
+        "climatology_rmse": 0.23162838580265752,
+        "signal_to_climatology_ratio": 0.9999956929634535
+      },
+      "700m": {
+        "depth_m": 700,
+        "anomaly_mean": 0.0,
+        "anomaly_variance": 0.05275141820311546,
+        "anomaly_std": 0.2296767681837082,
+        "climatology_mse": 0.05275141820311546,
+        "climatology_rmse": 0.2296767689669886,
+        "signal_to_climatology_ratio": 0.9999956426636983
+      },
+      "1000m": {
+        "depth_m": 1000,
+        "anomaly_mean": 3.5173273182920184e-09,
+        "anomaly_variance": 0.06215670332312584,
+        "anomaly_std": 0.24931246042251587,
+        "climatology_mse": 0.06215670332312585,
+        "climatology_rmse": 0.24931246122712328,
+        "signal_to_climatology_ratio": 0.9999959857578388
+      }
+    }
+  }
+}

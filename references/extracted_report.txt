@@ -1,0 +1,364 @@
+PS26066 — OceanEmbed
+Problem Statement Analysis, Existing Solutions Review, and Identified Gaps
+Smart India Hackathon 2026 — Software Track
+Compiled from a direct, file-by-file review of 17 public repositories, real operational products (Copernicus ARMOR3D, ISRO/MOSDAC isQG), and peer-reviewed research, current as of September 2026.
+Table of Contents
+1. The Official Problem Statement
+2. Quick-Reference Summary — All 17 Repositories Reviewed
+3. Detailed Repository-by-Repository Analysis
+4. Existing Real Operational Software and Key Published Research
+5. Cross-Cutting Gaps Identified Across All Sources Reviewed
+6. Additional Gaps We Identified — Not Raised By Any Repo, Paper, or Product
+7. Our Recommendations Going Forward
+1. The Official Problem Statement
+Field
+Value
+PS ID
+SIH26066
+Title
+OceanEmbed — Satellite Embedding-Based Deep Learning Framework for Reconstruction of Subsurface Ocean Temperature from Surface Satellite Observations
+Category
+Software
+Theme
+Disaster Management
+Background, as stated in the official PS: subsurface ocean temperature is fundamental to understanding ocean circulation, upper-ocean heat content, stratification, climate variability, air-sea interaction, and marine ecosystems — with direct applications to marine heatwave monitoring, fisheries, and data assimilation. Direct subsurface measurements (ARGO floats, moored buoys, gliders, ship observations) provide vertical information but insufficient spatial/temporal coverage for continuous, basin-scale fields. Satellite observations, by contrast, offer continuous large-scale surface monitoring — and surface variables (SST, SSS, SSH/SLA, surface currents, surface winds) carry indirect signatures of subsurface processes through mechanisms such as thermocline displacement, mesoscale eddies, vertical mixing, and ocean-atmosphere coupling.
+The PS frames the solution around "satellite embeddings" — compact latent representations learned via AI/deep learning/representation learning that capture hidden ocean dynamics and the nonlinear relationship between surface observations and subsurface structure more effectively than conventional machine learning.
+1.1 What They Explicitly Ask Us to Build
+A preprocessing and harmonization pipeline for multi-source satellite and ocean datasets, standardized to 0.25° × 0.25° spatial resolution and daily temporal resolution.
+A system covering the North Indian Ocean domain: 5°N–30°N, 45°E–105°E (i.e. both the Arabian Sea and the Bay of Bengal).
+Deep learning architectures explicitly suggested: CNNs, Vision Transformers, Autoencoders, Graph Neural Networks, and attention-based hybrid architectures — generating "satellite embeddings" as compact latent representations.
+Reconstruction of temperature at 15 standard depth levels: 0, 5, 10, 20, 30, 50, 75, 100, 125, 150, 200, 300, 500, 700, and 1000 metres.
+Evaluation using independent observations and standard skill metrics: correlation, RMSE, bias, etc.
+If a required dataset isn't available at the exact target resolution, teams may substitute an openly available product with appropriate interpolation/regridding.
+1.2 Datasets and Inputs They Specify
+Required surface input variables (surface satellite observations):
+Sea Surface Temperature (SST)
+Sea Surface Salinity (SSS)
+Sea Surface Height (SSH) / Sea Level Anomaly (SLA)
+Surface ocean currents (U, V)
+Surface winds (U, V)
+Training target dataset (subsurface temperature): GLORYS Global Ocean Reanalysis (Copernicus Marine Service product, DOI 10.48670/moi-00021).
+In-situ observation dataset for independent validation: Gridded ARGO, via the INCOIS Live Access Server (LAS).
+1.3 The Expected Solution, As Stated
+An end-to-end preprocessing pipeline for satellite and ocean datasets.
+A "satellite embedding engine" capable of learning latent ocean representations from surface observations.
+A deep learning reconstruction model estimating subsurface temperature at the 15 standard depths, evaluated against independent (ARGO) observations.
+2. Quick-Reference Summary — All 17 Repositories Reviewed
+Every repository below was cloned and read file-by-file directly (models, training scripts, loss functions, evaluation outputs, configuration, and — where present — raw result data/plots), not assessed from README files alone.
+#
+Repository
+Tier
+One-line verdict
+1
+SatyaSailesh/OceanEmbed
+B
+Sophisticated architecture, never trained on real data
+2
+xarjunpatil/SIH26066-...
+C
+Fake — boilerplate with wrong-domain labels
+3
+JishnuKaushik/Ocean-Embed
+—
+Does not exist (404)
+4
+KaviBharathi643/oceanembed
+S
+Real, credentialed data + real independent ARGO validation
+5
+Nishad3107/OceanEmbed
+S
+Full domain, most statistically rigorous validation
+6
+sg721642/OceanEmbed
+A
+Most technically sophisticated; real GLORYS-vs-ARGO gap shown
+7
+AtulChaudharyy/oceanembed
+A
+Climatology-init bias + depth-weighted loss, unverifiable results
+8
+aaronpinto449-source/OceanEmbed
+A
+Real ARGO CSV we independently verified; multi-horizon forecasting
+9
+tharunreddy08/Ocean-Embed
+B
+Richest feature set (explainability, observation planner); never converged
+10
+ldray857/Pinn-Ocean
+B
+Most scientifically advanced architecture; wrong ocean region entirely
+11
+Algohercules/Ocean-Intelligence-Platform
+B
+Real ConvLSTM architecture on 100% fabricated data
+12
+chilli-garlic-momo/oceanEmbed
+C*
+No live inference, but textbook-correct TCHP/MLD formulas
+13
+Roshan030506/OceanEmbed
+C/D
+Minimal synthetic toy, wrong region, 5 of 15 depths
+14
+kanishkaanarang/oceanembed
+A
+Classical XGBoost; strong real MAE (0.22°C) vs. real ARGO
+15
+manaswi-044/OceanEmbed
+D
+Pure frontend UI mockup, zero real science
+16
+sayan21m/nio-satdepth
+A/B
+Real ConvLSTM-vs-ViT comparison; strongest evidence for temporal windowing
+17
+m-kamal-dev/Oceanembed.
+A
+Most rigorous data-provenance audit; dataset too small as a result
+One additional repository, kdy8706/Conditional-Computation-Model, appeared in a broader search for related techniques but on inspection is not a SIH26066 attempt at all — it is an unrelated public reproducibility archive accompanying a real, separately published paper (Kim et al., 2026) about the Ulleung Warm Eddy in Korea's East Sea. It is excluded from the 17-repository count above and not analyzed further here, noted only for transparency about the research process.
+3. Detailed Repository-by-Repository Analysis
+1. SatyaSailesh/OceanEmbed  —  Tier B (sophisticated architecture, never trained on real data)
+Repository: github.com/SatyaSailesh/OceanEmbed
+Approach:  Full-basin architecture built around a continuous-depth decoder: rather than a fixed 15-output head, depth is encoded via Fourier positional features (NeRF-inspired) and queried continuously. Predicts mean and log-variance (heteroscedastic uncertainty) in one pass. Includes a learned region embedding (Arabian Sea / Bay of Bengal / Open Ocean) at the network bottleneck, and a thermocline-depth-consistency physics loss alongside a depth-smoothness regularizer.
+Real results found:  Own training_history.json: 2 epochs, val RMSE 15.5°C (not scientifically meaningful). Own argo_validation_report.json (tagged DEMO/SYNTHETIC): R² is negative (-100 to -296) below 300m.
+Innovative / notable points:
+Continuous-depth querying via Fourier/NeRF-style positional encoding — can query any depth, not just the 15 standard levels.
+Heteroscedastic uncertainty (mean + log-variance in a single forward pass) with a proper citation to the underlying technique (Kendall & Gal 2017).
+Thermocline-depth-consistency loss: a genuine physics-informed regularizer distinct from feature engineering.
+Correct chronological data splitting (train 1993–2018, val 2019–2020, test 2021–2022) — avoids the temporal-leakage mistake several other repos don't even address.
+Explicit missingness-mask channels rather than silently interpolating gaps.
+Transparent data-provenance tagging on every evaluation artifact (REAL vs DEMO/SYNTHETIC, VALID_OBSERVATIONAL_METRIC vs SOFTWARE_VERIFICATION_ONLY) — an honesty practice worth adopting regardless of this repo's own results.
+Drawbacks / gaps:
+Never obtained CMEMS/Copernicus credentials or a CDS API key — by the repository's own LIMITATIONS.md, no real satellite/GLORYS/ARGO data was ever downloaded.
+Developed CPU-only, no GPU — training realistically never proceeded past a smoke test.
+The one real training run on file is scientifically meaningless (RMSE 15.5°C, 2 epochs).
+Region-embedding and uncertainty modules are architecturally present but entirely unvalidated — the repo's own documentation says explicitly that regional conditioning "does NOT guarantee improved performance ... must be measured," and it never was.
+2. xarjunpatil/SIH26066-OceanEmbed-...  —  Tier C (not a real attempt)
+Repository: github.com/xarjunpatil/SIH26066-OceanEmbed-Satellite-Embedding-Based-Deep-Learning-Framework-for
+Approach:  A generic FastAPI backend scaffold with a `/telemetry/ingest` endpoint and a fake "risk score" computed via random.uniform(). No ocean data handling, no ML model, no satellite ingestion anywhere in the codebase.
+Real results found:  None — no model exists to produce results.
+Innovative / notable points:
+None identified — appears to be a templated/boilerplate repository, possibly reused across multiple unrelated problem statements.
+Drawbacks / gaps:
+The code and solution.md still literally label the domain as "Landslide & Slope Stability GIS" in three separate places — a copy-paste artifact from a completely unrelated problem statement template.
+No real data, model, training, or validation of any kind exists in this repository.
+3. JishnuKaushik/Ocean-Embed  —  Tier Does not exist
+Repository: github.com/JishnuKaushik/Ocean-Embed
+Approach:  N/A — the repository returns a 404 from GitHub directly. It is either private, deleted, or the link/name is incorrect.
+Real results found:  N/A
+Innovative / notable points:
+Drawbacks / gaps:
+Cannot be analyzed — does not resolve to a public repository at the time of this research.
+4. KaviBharathi643/oceanembed  —  Tier S (real data, real training, real independent validation)
+Repository: github.com/KaviBharathi643/oceanembed
+Approach:  Patch-based CNN (5×5 local spatial patches, not full-basin context) trained on real, credential-verified CMEMS + NASA Earthdata data for the Bay of Bengal sub-region (5–25°N, 80–100°E) as a proof-of-concept, full year 2024, 618,633 real training samples.
+Real results found:  Test vs. held-out GLORYS: RMSE 0.98°C, R² 0.99 (+33% vs baseline). Independent real ARGO (852 profiles, 672 matched): RMSE 0.85°C, R² 0.99 (+36% vs baseline) overall — but R² goes negative below 300m (−0.24 at 300m to −0.60 at 700m) even though raw RMSE there is small (0.33–0.39°C).
+Innovative / notable points:
+The most rigorously *credential-verified* real data pipeline found: actual authenticated login checks (HTTP 200 responses) against Copernicus Marine Service and NASA Earthdata, not just download scripts that might silently fail.
+Real, complete GLORYS-test + independent-ARGO validation with exact-date float matching.
+The clearest real-world demonstration of the "low RMSE can hide near-zero real skill at depth" failure mode — valuable specifically because it's an honest, complete dataset of results, not because the result itself is good.
+Drawbacks / gaps:
+Patch-based (5×5) input loses full basin-scale spatial context — can't see distant eddies or basin-wide monsoon current reversals that a full-grid model would.
+Domain limited to Bay of Bengal only — doesn't attempt the Arabian Sea half of the PS's required domain.
+R² collapses below 300m despite deceptively small raw RMSE — no depth-weighted loss or architectural fix attempted for this.
+No physics-derived input features (no geostrophic currents from SSH) and no climatology-anomaly prediction target.
+5. Nishad3107/OceanEmbed  —  Tier S (real data, real training, real independent validation)
+Repository: github.com/Nishad3107/OceanEmbed
+Approach:  U-Net over the full required PS domain (5–30°N, 45–105°E), validated against real INCOIS/Argo gridded observations and the CORA in-situ database for the full year 2023, with bootstrap 95% confidence intervals computed per depth level.
+Real results found:  Best: 300–1000m RMSE 0.22–0.28°C, correlation ~0.98. Worst: 100m, RMSE 1.46°C (flagged explicitly by the repo's own report as the "notable discrepancy").
+Innovative / notable points:
+Full PS-required domain coverage (both Arabian Sea and Bay of Bengal) — more ambitious in scope than any other repo reviewed.
+The most statistically rigorous validation methodology found anywhere in the sweep: bootstrap confidence intervals per depth, explicit "low_confidence" flags where real ARGO data thins below ~700m.
+Honest self-reported limitation: explicitly notes the Murphy skill score / anomaly correlation coefficient could not be computed because no climatology dataset was available — flags the gap rather than omitting it silently.
+Drawbacks / gaps:
+No climatology-relative (anomaly) prediction target, and no skill-score-vs-climatology metric actually computed, by the repo's own admission.
+Repository also contains a `make_synthetic_data.py` fallback path in its validation pipeline; the precise boundary between the real CORA-based validation numbers and any synthetic fallback usage isn't fully disambiguated from the outside.
+No physics-derived input features (geostrophic currents) and no depth-cascade or auxiliary physical targets (MLD, barrier layer).
+6. sg721642/OceanEmbed  —  Tier A (real pipeline, most technically sophisticated of all 17)
+Repository: github.com/sg721642/OceanEmbed
+Approach:  The single most feature-complete real attempt found. Fits a real two-harmonic (annual + semi-annual) seasonal climatology per depth and grid cell, and trains the model to predict the *anomaly* from that climatology rather than the absolute value. Decomposes surface currents into geostrophic and ageostrophic components. Uses a 7-day temporal input window rather than a single-day snapshot. Adds auxiliary prediction heads for mixed layer depth, a stratification-depth proxy, and a barrier-layer-thickness proxy. Includes heteroscedastic uncertainty and a `regime_input` regional conditioning signal.
+Real results found:  RMSE vs. GLORYS (training target): 0.49°C. RMSE vs. independent real ARGO: 1.90°C — nearly 4× worse, on a 60-day held-out window (May–June 2023).
+Innovative / notable points:
+Climatology-anomaly prediction target, implemented and actually trained on, not just designed.
+Geostrophic *and* ageostrophic current decomposition — goes further than the literature's standard "geostrophic-only" recommendation.
+7-day temporal windowing, giving the model access to recent trend rather than a single snapshot.
+Auxiliary multi-task heads for MLD, a second stratification proxy, and specifically a barrier-layer-thickness proxy — the only repo in the entire sweep to explicitly target the Bay of Bengal's defining physical feature as a learning signal.
+Regime/region conditioning input alongside the main surface state.
+Drawbacks / gaps:
+The ~4× gap between GLORYS-fit accuracy and independent-ARGO accuracy is the starkest real demonstration in the whole sweep of the "training target is not ground truth" problem — despite the most sophisticated feature set of any repo, real-world generalization is still weak.
+Held-out validation window is short (60 days) — not a full seasonal cycle, so it's unclear how the ~1.90°C figure holds up across monsoon transitions specifically.
+No depth-cascade conditioning, and no calibration check on the predicted uncertainty.
+7. AtulChaudharyy/oceanembed  —  Tier A (real pipeline, trained checkpoint)
+Repository: github.com/AtulChaudharyy/oceanembed
+Approach:  Full-basin (not patch-based) U-Net-style encoder-decoder over the complete grid, with two concrete engineering choices worth noting: the final layer's bias is initialized directly to the real climatological depth profile (31.1°C at the surface tapering to 7.8°C at 1000m) instead of zero, and the loss function explicitly upweights the 50–200m thermocline band (1.2–1.5×) while masking out land cells entirely.
+Real results found:  Real download scripts and a trained checkpoint exist; no saved evaluation-results JSON was found in the repository, so final accuracy could not be independently verified from the code alone.
+Innovative / notable points:
+Climatology-informed bias initialization — a lightweight way to give the network a physically sensible starting point without the full engineering overhead of a separate anomaly-learning pipeline.
+Depth-weighted, ocean-masked loss function directly engineered to counteract the exact thermocline-core weakness this research confirmed across multiple independent sources.
+Full-grid (not patch-based) spatial context, unlike KaviBharathi643.
+Drawbacks / gaps:
+No verifiable evaluation output — real accuracy claims cannot be independently checked.
+The included "disaster service" is a general marine-weather-hazard tool built mostly on a free external weather API (Open-Meteo) using only SST — it does not compute Ocean Heat Content or Cyclone Heat Potential from the model's own reconstructed subsurface profiles, so the downstream product is not really driven by the core scientific contribution.
+8. aaronpinto449-source/OceanEmbed  —  Tier A (real pipeline, real ARGO comparison data)
+Repository: github.com/aaronpinto449-source/OceanEmbed
+Approach:  A more conventional ResNet-style CNN (plain convolutional stem, 4 residual blocks, depth-aware decoder), with real GLORYS/SSS/wind download scripts and model variants for both same-day reconstruction and multi-day-ahead forecasting (10-day and 30-day variants).
+Real results found:  We located and personally computed statistics from their raw real ARGO-comparison CSV (114 matched points, real platform IDs, real 2020 dates): overall RMSE 0.73°C; RMSE peaks at 75–100m (1.42–1.57°C), consistent with every other real-data repo's thermocline-core weakness; drops back down at deeper levels.
+Innovative / notable points:
+Explored multi-horizon forecasting (10-day and 30-day ahead), not just same-day reconstruction — a genuinely different, more ambitious problem framing than any other repo attempted.
+Provided raw, per-point real ARGO comparison data (not just a summary), which allowed independent recomputation and verification of their claimed accuracy.
+Drawbacks / gaps:
+No aggregated evaluation summary was provided by the repository itself — we had to compute the real numbers ourselves from the raw CSV.
+Small validation sample (9 points per depth level) limits statistical confidence in the exact numbers.
+No physics-informed features, climatology-anomaly target, or auxiliary heads.
+9. tharunreddy08/Ocean-Embed  —  Tier B (most feature-rich, never converged)
+Repository: github.com/tharunreddy08/Ocean-Embed
+Approach:  The broadest feature set of any repo: a ResNet+CBAM-attention CNN with a dedicated convolutional branch per depth level, plus a full surrounding system — Integrated-Gradients-style explainability (quantifying which input channel most drove a given prediction), a dedicated eddy detector, thermocline and seasonal-analysis utilities, proper Monte Carlo Dropout uncertainty (correctly keeps BatchNorm in eval mode during MC sampling, a detail often gotten wrong), and a MongoDB-backed API.
+Real results found:  Real training_history.json: val RMSE 13–20°C across 15 epochs — physically nonsensical (the entire real temperature range for this problem is roughly 25°C), confirming the model never meaningfully converged. Data generator (`sample_generator.py`) is explicitly synthetic/simulation-marked.
+Innovative / notable points:
+"Observation planner" module — the single most creative idea found anywhere in the sweep: uses the model's own MC-Dropout uncertainty map to recommend *where a new ARGO float should physically be deployed next*, i.e. active-learning-style optimal sensor placement, not just a passive confidence display.
+Feature-attribution explainability (Integrated Gradients) showing which of the 9 input channels most influenced a specific depth prediction.
+Correct, careful MC-Dropout implementation — a technical detail many teams get subtly wrong.
+Drawbacks / gaps:
+The core model never converged to anything scientifically meaningful — all the surrounding sophistication (explainability, eddy detection, observation planning) sits on top of a broken core.
+Confirmed synthetic, simulation-marked training data — no evidence of real satellite/GLORYS/ARGO data ever being used.
+10. ldray857/Pinn-Ocean  —  Tier B (most scientifically sophisticated architecture, wrong region, never executed)
+Repository: github.com/ldray857/Pinn-Ocean
+Approach:  A DeepONet-style branch-trunk operator-learning architecture combined with a Swin Transformer spatial encoder, multi-scale (log-scale) Fourier depth embedding, and separate decoder heads for temperature and salinity — correctly modeling that temperature profiles are roughly monotonic with depth while salinity/halocline profiles are not. Physics losses are grounded in TEOS-10, the real international seawater equation-of-state standard. A learnable homoscedastic weighting scheme (Kendall et al.-style) automatically balances the data-fidelity loss against the physics-constraint loss rather than requiring manually tuned weights. Reads as a faithful, careful reimplementation of a real academic paper (attributed to Di Lei & Sensen Wu, Zhejiang University).
+Real results found:  The `results/` directory contains only a placeholder file — the architecture was never actually run to produce output.
+Innovative / notable points:
+The most scientifically sophisticated single architecture found in the entire sweep — DeepONet operator learning is a genuinely current, research-grade technique, correctly applied here.
+TEOS-10-grounded physics loss — the real, internationally standard seawater equation of state, not an approximation.
+Separate temperature/salinity decoder heads reflecting their genuinely different vertical structure shapes.
+Learnable adaptive loss weighting between data and physics terms — removes a manual hyperparameter-tuning burden.
+Drawbacks / gaps:
+Hardcoded to the Northwest Pacific / Kuroshio Extension (145–165°E, 30–40°N) — not the North Indian Ocean domain (5–30°N, 45–105°E) the problem statement actually requires.
+The region was deliberately chosen as "100% pure open ocean, zero land points" specifically to avoid land-masking entirely — meaning even a direct region-swap would still need land-masking logic built from scratch, which this repo has never had to solve.
+Never executed — no real training run, no real results, on any region.
+11. Algohercules/Ocean-Intelligence-Platform  —  Tier B (real architecture, 100% fabricated data)
+Repository: github.com/Algohercules/Ocean-Intelligence-Platform
+Approach:  A full-stack system (FastAPI + Streamlit) built around a real, competently written ConvLSTM model with spatial attention and residual connections — a legitimate architecture choice for jointly capturing spatial structure and temporal evolution. Includes explicit heatwave-detection routes.
+Real results found:  No real results — the data layer generates SST/SSH/wind fields from hand-written sine/cosine formulas with no pretense of statistical realism (not even synthetic-with-realistic-noise, as several other repos attempt).
+Innovative / notable points:
+A genuinely reasonable model architecture choice (ConvLSTM + spatial attention) for this class of problem.
+Explicit heatwave-detection routes show the right instinct toward a downstream disaster product, even though not connected to anything real.
+Drawbacks / gaps:
+The backend's core data service (`mock_data.py`) directly imports Streamlit into what should be a data layer — an architectural smell suggesting the "data service" was built purely to drive a demo UI, not to be a real pipeline.
+Input fields are generated from simple trigonometric formulas, not even disguised as realistic satellite data — the weakest data-authenticity of any repo reviewed given the architecture's apparent sophistication.
+12. chilli-garlic-momo/oceanEmbed  —  Tier C, with one genuinely strong exception
+Repository: github.com/chilli-garlic-momo/oceanEmbed
+Approach:  A backend that serves only precomputed, static outputs — it does not run a model per request. However, its `derived.py` module implements Tropical Cyclone Heat Potential and Mixed Layer Depth calculations that are, on inspection, textbook-correct: the 26°C isotherm depth is found via proper linear interpolation between depth levels, temperature excess above 26°C is integrated down to that isotherm weighted by seawater density and specific heat and converted to kJ/cm² (the real operational TCHP formula), and MLD uses the standard de Boyer Montégut 0.2°C-threshold-from-10m-reference method.
+Real results found:  No live model inference exists to validate — the diagnostic formulas themselves are correct, but there's no real subsurface reconstruction behind them in this repository.
+Innovative / notable points:
+The most textbook-correct implementation of TCHP and MLD formulas found across all 17 repositories — a genuinely useful reference for exactly matching real operational practice.
+Drawbacks / gaps:
+No live inference at all — the backend serves precomputed static output, meaning there's no real model generating the subsurface fields these correct formulas are meant to operate on.
+No real data pipeline or training of any kind.
+13. Roshan030506/OceanEmbed  —  Tier C/D (minimal toy)
+Repository: github.com/Roshan030506/OceanEmbed
+Approach:  A small, fully synthetic toy example — a dummy data generator producing a tiny 16×20 grid centered near the equator/Pacific (not the North Indian Ocean), covering only 5 depth levels rather than the required 15.
+Real results found:  None of scientific value — small-scale synthetic demonstration only.
+Innovative / notable points:
+None of substance identified.
+Drawbacks / gaps:
+Wrong region entirely (equatorial/Pacific-centered synthetic data, not North Indian Ocean).
+Only 5 of the 15 required depth levels.
+No real data pipeline, training, or validation of any kind.
+14. kanishkaanarang/oceanembed  —  Tier A (real data, classical ML, strong real numbers)
+Repository: github.com/kanishkaanarang/oceanembed
+Approach:  The one genuinely different approach in the whole sweep: classical XGBoost gradient-boosted trees (not deep learning), using the real official `argopy` and `copernicusmarine` Python client libraries for data access — Bay of Bengal region, 2020–2024. Includes SHAP-based feature-importance explainability.
+Real results found:  We viewed the repository's own real result plots directly: mean absolute error of 0.22°C against real ARGO (n=115), compared against an EN4-climatology baseline at 0.31°C MAE (n=224) — genuinely one of the strongest raw accuracy numbers found in the entire sweep, despite being the simplest, non-deep-learning approach.
+Innovative / notable points:
+Proof that a simpler, well-engineered classical ML approach with a correctly built real data pipeline can be highly competitive with — or better than — several deep learning attempts on this exact problem.
+Correct, idiomatic use of the real official data-access libraries (`argopy`, `copernicusmarine`), which several other repos reinvent less reliably by hand.
+SHAP explainability — a different, well-established feature-importance technique from the Integrated-Gradients approach used elsewhere.
+Drawbacks / gaps:
+No per-depth breakdown was available in the results we could inspect, so we cannot confirm or deny whether this approach also suffers the thermocline-core weakness seen everywhere else.
+Point-based prediction only (given lat/lon/date), not a full gridded spatial field reconstruction — a structurally different, less complete deliverable than the PS's gridded requirement.
+Small validation sample (115–224 points).
+15. manaswi-044/OceanEmbed  —  Tier D (pure frontend, no science)
+Repository: github.com/manaswi-044/OceanEmbed
+Approach:  A polished React/Vite/TypeScript dashboard UI (Region Selection, Data Ingestion, Training, and Results screens), generated substantially via an AI UI-design tool ("Stitch"). Entirely backed by mock data files.
+Real results found:  None — there is no model or backend of any kind, real or synthetic.
+Innovative / notable points:
+Genuinely polished visual/UX design, if a working system existed to sit behind it.
+Drawbacks / gaps:
+Zero real science, model, or data anywhere in the repository — this is a UI mockup only.
+Useful mainly as a reminder that visual polish and scientific substance are independent axes, and that some competing teams may over-invest in the former at the expense of the latter.
+16. sayan21m/nio-satdepth  —  Tier A/B (real, completed architecture comparison)
+Repository: github.com/sayan21m/nio-satdepth
+Approach:  A genuine, completed head-to-head comparison of two architectures on the North Indian Ocean domain: a Vision Transformer working from a single-day snapshot, versus a ConvLSTM using a temporal lag window of recent days. Real result plots exist for both (loss curves, RMSE-by-depth, true-vs-predicted maps), plus a real single-point profile prediction demo (15°N, 65°E, 15 March 2024).
+Real results found:  ViT: RMSE 0.33–1.13°C, peaking sharply around 100–150m — consistent with the thermocline-core pattern seen everywhere else. ConvLSTM-with-lag: RMSE 0.12–0.37°C — roughly 3× better overall than the ViT — though its error rises monotonically toward 1000m rather than peaking mid-depth and falling, a different failure shape than every other repo reviewed.
+Innovative / notable points:
+The only repository in the entire sweep to run a genuine, controlled, apples-to-apples comparison between a temporal architecture and a single-snapshot architecture on the same data.
+Direct, strong empirical evidence that temporal/lag information provides a very large accuracy improvement (~3×) on this exact task — validates temporal windowing as a design choice with real numbers, not just intuition.
+Drawbacks / gaps:
+It's unclear from the repository whether these results are validated against real independent ARGO data or only held-out GLORYS/simulation splits — the strength of the ConvLSTM's advantage should be treated as encouraging but not fully independently confirmed.
+The ConvLSTM's error-vs-depth shape (rising toward the abyss rather than peaking mid-depth) is unexplained by the repository and worth investigating rather than assuming it generalizes.
+17. m-kamal-dev/Oceanembed.  —  Tier A (the most rigorous data-provenance auditing found)
+Repository: github.com/m-kamal-dev/Oceanembed.
+Approach:  A modest classical model (scope: 4 depth levels — 50/100/200/500m — and 6 features: lat, lon, day-of-year, SST, SSH, SSS), but built behind the most rigorous real-data verification process found anywhere in this research. Includes a real Natural Earth land-mask shapefile for proper land/ocean masking, and a CI/CD test pipeline (GitHub Actions) — unusually professional engineering practice for a hackathon submission.
+Real results found:  Documented, certified real-data datasheet: 541 matched real observation rows from 81 unique real ARGO floats (by WMO ID), mean spatial match distance of just 0.47km and mean temporal difference of 5.35 hours between satellite and float observations (a tighter, more carefully enforced matching tolerance than most other repos, several of which just use "same calendar day"), zero synthetic rows detected. After these strict constraints, the final usable dataset is only 36 training rows and 9 test rows.
+Innovative / notable points:
+The most rigorous, explicitly certified real-data provenance process of any repository reviewed — a genuine "Scientific Integrity Certification" datasheet documenting exactly how many rows are real, how tightly matched, and confirming zero synthetic contamination.
+Real land-mask handling via an actual geographic shapefile, and a CI/CD test pipeline — both unusually mature engineering practices in this context.
+Drawbacks / gaps:
+The strict, honest matching constraints leave a dataset far too small for deep learning (36 training rows) — a direct, concrete illustration of the real tension between data-quality rigor and data-quantity sufficiency.
+Only 4 of the 15 required depth levels, and only 6 basic features (no currents, no winds at all) — a much narrower scope than the PS specifies, likely a direct consequence of the small real-data volume available after strict filtering.
+4. Existing Real Operational Software and Key Published Research
+Beyond hackathon repositories, this problem has real, currently-operational production software and an active peer-reviewed research literature behind it.
+4.1 ARMOR3D (Copernicus Marine Service / Mercator Ocean)
+The closest thing to a global operational "answer" to this problem already in production. Merges satellite SLA/SST/SSS with real in-situ profiles via a two-step statistical method (depth-dependent multiple linear regression, then optimal interpolation with nearby real observations) to deliver 3D temperature, salinity, mixed layer depth, and geostrophic currents globally, now at 1/8° daily resolution, operational since 2012.
+Documented weakness: a global validation study found RMSE peaks around 50–100m depth (the seasonal pycnocline) — independently confirming the thermocline-core weakness this research found repeatedly across modern deep-learning attempts, using a completely different, non-DL methodology from 2012.
+Documented weakness: systematically underestimates mesoscale eddy intensity (geostrophic velocity off by 2–4× in a documented case study) and cannot resolve subsurface-intensified features lacking a surface signature unless a real float happens to be sampling inside them.
+4.2 isQG on MOSDAC (ISRO / Space Applications Centre)
+India's own existing operational product for a version of this exact task, covering the Bay of Bengal only. Uses the "interior + surface Quasi-Geostrophic" (isQG) method — a classical geophysical fluid dynamics inversion, not deep learning — to reconstruct subsurface density and velocity anomalies from AVISO SSH, GHRSST SST, and SMAP SSS, informed by ISAS climatological stratification.
+Self-documented limitation: 10m vertical resolution, which ISRO's own documentation calls "a major drawback since in Bay of Bengal, the mixed layer can be as shallow as 15–20m."
+Self-documented limitation: updates only every six months (the PS requires daily), covers Bay of Bengal only (no Arabian Sea equivalent exists), is not valid near the equator, fails at high eddy kinetic energy or strong stratification, and is documented to degrade "due to bad weather (heavy rain) and extreme events like cyclones" — precisely the moments a Disaster Management application needs it most.
+4.3 GLORYS12v1 and ISAS/CORA
+GLORYS is the PS's own designated training target — a numerical ocean model with data assimilation, not a direct measurement; it inherits its own model biases. ISAS (Ifremer) and CORA are the underlying gridded ARGO-based climatology and quality-controlled in-situ database that feed GLORYS, ARMOR3D, and isQG alike.
+4.4 TS-Cast (Ocean Science journal, published 16 July 2026)
+The most current and rigorously validated deep learning paper found. Treats a monthly climatological profile as a physical prior and uses a U-Net with FiLM (Feature-wise Linear Modulation) conditioning to learn dynamic adjustments to that climatology from a 31-day satellite window, rather than regressing raw values directly. Achieves under 1°C / 0.1 psu in the upper 500m of the Kuroshio Extension, and — critically — matches or beats assimilative reanalysis products (GLORYS, HYCOM, ARMOR3D) on genuinely independent validation (PIES acoustic sensors, which are not assimilated into any of those products).
+Key methodological point: the paper explicitly distinguishes independent from non-independent validation — since GLORYS and ARMOR3D both assimilate the same in-situ data often used to validate them, apparent high accuracy against that data can partly reflect self-consistency rather than genuine predictive skill. This directly calls into question how "independent" the ARGO validation reported by several repositories above (Tier S included) really is, since GLORYS is itself built by assimilating ARGO data.
+Key methodological point: explicitly quantifies why its own accuracy has a physical ceiling: satellite altimetry's ~10-day repeat cycle imposes a hard Nyquist limit (~20-day minimum resolvable period), and non-steric ("barotropic") sea-surface-height signals unrelated to subsurface structure add irreducible noise (~10% of SSH variance in their region).
+4.5 Comparative Benchmark (CGKDN, IEEE TGRS 2024/2025)
+A clustering-guided knowledge-distillation network reports average RMSE across depths and time, validated against held-out EN4 profiles (2001–2020), giving a real comparative reference point:
+Product
+Avg. temperature RMSE (°C)
+CGKDN (their DL model)
+0.590
+IAP gridded product
+0.598
+ORAS5 (ECMWF reanalysis)
+0.690
+DORS (satellite-based product)
+0.723
+4.6 The Broader Research Field
+Neural-network surface-to-subsurface estimation traces back to Ali et al. (2004), the earliest such attempt. Recent years show real architectural diversity across multiple independent research groups: multi-scale attention networks (2024), transformer-based "Convformer" models (2024), 3D U-Nets (2022), clustering-plus-neural-network hybrids, and physics-informed joint chlorophyll/hydrography models (2025, Mediterranean). This is an active, mainstream, multi-group research area, not a fringe topic.
+5. Cross-Cutting Gaps Identified Across All Sources Reviewed
+Patterns that recur across the repositories, products, and papers above — things that are either universally unsolved, or solved by only one or two sources and worth deliberately incorporating:
+The 75–150m thermocline core is the hardest zone to reconstruct: confirmed independently across at least six different sources in this research — ARMOR3D's 2012 validation study, ISRO's own isQG documentation, and real results from KaviBharathi643, Nishad3107, aaronpinto449, and sayan21m's ViT model. This is close to a settled fact for this problem, not a hypothesis.
+Low raw RMSE at depth can mask near-zero real skill: KaviBharathi643's real results show small absolute error but negative R² below 300m — a model can look accurate on a naive metric while adding no genuine explanatory power, because deep-ocean temperature has very little natural variability to explain in the first place.
+Training-target vs. real-world generalization gap: sg721642's real numbers (0.49°C vs. GLORYS, 1.90°C vs. independent ARGO) are the starkest concrete demonstration that fitting the reanalysis training target well does not guarantee real-world accuracy.
+Validation independence is questionable across the board: no repository reviewed — including the most rigorous ones — addresses whether the real ARGO data used for "independent" validation might already be statistically entangled with GLORYS through its own assimilation process, a concern the TS-Cast paper raises explicitly and solves by using genuinely unassimilated instruments.
+Depth-cascade conditioning is untried: every repository predicts each depth level either independently or via a shared decoder — none use the model's own shallower-depth predictions as explicit context for deeper ones, despite the physical reality that a real vertical profile is smooth and vertically correlated.
+Downstream disaster products are incomplete everywhere: the only textbook-correct TCHP/MLD implementation (chilli-garlic-momo) has no live model behind it; the only repos with a live model and a "disaster" layer (AtulChaudharyy) don't actually drive that layer from their own reconstructed subsurface profiles.
+Temporal/lag information matters a great deal and is underused: sayan21m's direct architecture comparison shows roughly a 3× error reduction from adding a temporal lag window versus a single-day snapshot — yet most repositories (including several Tier A/S ones) still predict from a single day's surface state.
+Uncertainty is predicted far more often than it is calibrated: several repositories (SatyaSailesh, sg721642, Pinn-Ocean, tharunreddy08, TS-Cast) output a variance or confidence value; none verify with real held-out data that the stated confidence level actually matches the true error rate.
+A real tension between data-quality rigor and data-quantity sufficiency: m-kamal-dev's exceptionally rigorous provenance auditing left only 36 usable training rows after strict matching constraints — illustrating that being maximally careful about data authenticity and having enough data to train a real model can directly trade off against each other, and any team needs a deliberate strategy for that trade-off, not just "be careful."
+6. Additional Gaps We Identified — Not Raised By Any Repo, Paper, or Product
+These did not come up explicitly in any of the 17 repositories, the operational products, or the papers reviewed, but are real risks worth deliberately addressing in our own solution:
+Operational pipeline robustness: no repository — even the most complete ones — builds an actual scheduled, automated daily ingestion-and-inference pipeline with retry logic or graceful degradation for a missing/delayed input channel on a given day. Every repository treats this as a one-off batch training exercise, not a system that needs to keep running when a satellite product is late, partially missing, or an API is rate-limited.
+Domain-boundary artifacts: quasi-geostrophic methods (isQG) explicitly break down near the equator, and CNN-style architectures are prone to padding/edge artifacts near the boundary of a fixed spatial domain — yet no repository reviewed explicitly tests or reports accuracy specifically near the domain's edges (the 5°N equatorial boundary, or the Sri Lanka strait between the two sub-basins). This is a plausible, unaddressed weak spot.
+Multi-decade sensor transitions: if training spans multiple satellite missions/instrument generations (common over a 10–20 year GLORYS-era training window), subtle inter-sensor calibration discontinuities can introduce spurious "trends" a model might learn as real signal. Real operational products (ARMOR3D) handle this carefully; no hackathon repository addresses it at all.
+Spatial equity of accuracy: ARGO float coverage is not randomly distributed — it's denser near shipping lanes and accessible coastal regions. This means model accuracy is likely systematically better near well-sampled areas (e.g. near India's own coastline) and worse in remote international waters (e.g. far southern Arabian Sea). For a Disaster Management application, this could mean the model is least trustworthy exactly where fewer independent resources exist to catch a bad forecast. No source reviewed reports accuracy broken down this way.
+Model drift monitoring: none of the repositories discuss how an operational version of this system would detect silent accuracy degradation over time (e.g. as climate change shifts baseline ocean conditions away from the climatology or training distribution it was built on).
+The reanalysis-lag cold-start problem: GLORYS reanalysis is not available instantly for "today" — there's a real production lag before high-quality reanalysis catches up. A genuinely operational (not just retrospective) system needs an explicit plan for what to calibrate against for the most recent days before that lag resolves, using lower-latency but lower-quality near-real-time products. No repository addresses this at all.
+7. Our Recommendations Going Forward
+Register for real data access immediately: CMEMS/Copernicus Marine Service and NASA Earthdata credentials, and separately investigate MOSDAC's own data catalog (river discharge, high-resolution SSS, the isQG product itself, Oceansat-3/EOS-06 scatterometer wind-stress-curl products) — this is the single most consistently decisive factor separating Tier S/A repositories from Tier B/C ones.
+Build the depth-weighted, climatology-anomaly, temporally-windowed pipeline as the baseline: each of these three techniques is individually proven by at least one real repository above; combining all three in one system, which no single repository does, is itself a meaningful step beyond the current state of the art we found.
+Treat depth-cascade conditioning and uncertainty calibration as our two genuinely original contributions: nothing in this research — including the most sophisticated repositories and the most recent peer-reviewed paper — implements either.
+Report accuracy honestly and completely: by depth, region, and season at minimum, following Nishad3107's bootstrap-confidence-interval discipline, and explicitly state whatever we can determine about validation independence rather than silently assuming ARGO validation settles the question.
+Build the downstream disaster layer properly: match chilli-garlic-momo's textbook-correct TCHP/MLD formulas, but — unlike every repository reviewed — actually drive it from our own validated subsurface reconstruction with uncertainty carried through, not from an external weather API or a disconnected static store.
+Address at least one of the newly identified gaps explicitly in the PPT: even a brief, honest treatment of spatial-equity of accuracy or operational pipeline robustness — something not one of the 17 repositories, the operational products, or the papers reviewed even raises — would be a genuine, distinctive point of maturity.

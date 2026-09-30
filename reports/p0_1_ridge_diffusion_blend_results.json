@@ -1,0 +1,233 @@
+{
+  "multi_seasonal_10_dates": {
+    "alpha_grid": {
+      "alpha_0.0": {
+        "overall_rmse": 0.7202959825050327,
+        "overall_mae": 0.482104755317565,
+        "overall_bias": 0.03488261927641058,
+        "overall_correlation": 0.9991067387925158,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": -0.2579228903811852,
+        "shallow_rmse": 0.59115588309535,
+        "thermo_rmse": 1.0607666298283875,
+        "deep_rmse": 0.44721417726725216
+      },
+      "alpha_0.1": {
+        "overall_rmse": 0.6995763932842757,
+        "overall_mae": 0.46398040030368065,
+        "overall_bias": 0.030719465182036266,
+        "overall_correlation": 0.9992080235707391,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": -0.18659448977577764,
+        "shallow_rmse": 0.5669845340430262,
+        "thermo_rmse": 1.0385625144960158,
+        "deep_rmse": 0.42814027392617593
+      },
+      "alpha_0.2": {
+        "overall_rmse": 0.6807192102077916,
+        "overall_mae": 0.4476022277365838,
+        "overall_bias": 0.026557595338417835,
+        "overall_correlation": 0.9992957399138614,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": -0.12348699249859907,
+        "shallow_rmse": 0.5445958368157569,
+        "thermo_rmse": 1.018628454356935,
+        "deep_rmse": 0.41039048144660834
+      },
+      "alpha_0.3": {
+        "overall_rmse": 0.6638830070118423,
+        "overall_mae": 0.43306562029520923,
+        "overall_bias": 0.022394549773858713,
+        "overall_correlation": 0.9993698369624535,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": -0.06859992641689372,
+        "shallow_rmse": 0.5242180212745667,
+        "thermo_rmse": 1.0010999501065723,
+        "deep_rmse": 0.3941436039931406
+      },
+      "alpha_0.4": {
+        "overall_rmse": 0.6492251410176624,
+        "overall_mae": 0.420440926027416,
+        "overall_bias": 0.018232415247799845,
+        "overall_correlation": 0.9994302676677911,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": -0.021933636130887058,
+        "shallow_rmse": 0.5060942282381318,
+        "thermo_rmse": 0.9861053693811568,
+        "deep_rmse": 0.3795927713286367
+      },
+      "alpha_0.5": {
+        "overall_rmse": 0.6368959413011486,
+        "overall_mae": 0.4098091778104438,
+        "overall_bias": 0.014069096244385931,
+        "overall_correlation": 0.9994769884033946,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": 0.016512153039669686,
+        "shallow_rmse": 0.4904742128533956,
+        "thermo_rmse": 0.9737617246133881,
+        "deep_rmse": 0.36693971362211847
+      },
+      "alpha_0.6": {
+        "overall_rmse": 0.6270328719499152,
+        "overall_mae": 0.4012898152233744,
+        "overall_bias": 0.009907005323624237,
+        "overall_correlation": 0.9995099590870465,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": 0.04673718274085348,
+        "shallow_rmse": 0.47760389712878726,
+        "thermo_rmse": 0.9641708729358962,
+        "deep_rmse": 0.35638671876830796
+      },
+      "alpha_0.7": {
+        "overall_rmse": 0.6197536297552472,
+        "overall_mae": 0.39504238161711347,
+        "overall_bias": 0.005743732240416637,
+        "overall_correlation": 0.9995291432298993,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": 0.06874162151377905,
+        "shallow_rmse": 0.46771016501294815,
+        "thermo_rmse": 0.9574155354860577,
+        "deep_rmse": 0.3481247411018709
+      },
+      "alpha_0.8": {
+        "overall_rmse": 0.6151499672411936,
+        "overall_mae": 0.39127696649334587,
+        "overall_bias": 0.0015813671228990815,
+        "overall_correlation": 0.9995345079983268,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": 0.08252540902623295,
+        "shallow_rmse": 0.46098481084717435,
+        "thermo_rmse": 0.953555960806173,
+        "deep_rmse": 0.3423197626315116
+      },
+      "alpha_0.9": {
+        "overall_rmse": 0.6132821582473638,
+        "overall_mae": 0.39023318607316704,
+        "overall_bias": -0.002582171185719399,
+        "overall_correlation": 0.9995260239335746,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": 0.08808849360446769,
+        "shallow_rmse": 0.45756751931803064,
+        "thermo_rmse": 0.9526273939368651,
+        "deep_rmse": 0.3390979463876693
+      },
+      "alpha_1.0": {
+        "overall_rmse": 0.6141751258932633,
+        "overall_mae": 0.3921755312505991,
+        "overall_bias": -0.006744426886107723,
+        "overall_correlation": 0.9995036654344915,
+        "climatology_rmse": 0.6422202310293326,
+        "murphy_skill_score": 0.08543098826161477,
+        "shallow_rmse": 0.4575324481278272,
+        "thermo_rmse": 0.9546383189642922,
+        "deep_rmse": 0.3385330941245211
+      }
+    },
+    "depth_dependent_optimal_blend": {
+      "overall_rmse": 0.6252441473249495,
+      "overall_mae": 0.39880757383195725,
+      "overall_bias": 0.010101898540696095,
+      "overall_correlation": 0.9994962598606487,
+      "climatology_rmse": 0.6422202310293326,
+      "murphy_skill_score": 0.05216813433292122,
+      "shallow_rmse": 0.4904742141246861,
+      "thermo_rmse": 0.9588891892899087,
+      "deep_rmse": 0.3388735356273848
+    }
+  },
+  "continuous_61_days": {
+    "alpha_grid": {
+      "alpha_0.0": {
+        "overall_rmse": 0.6992274508512897,
+        "overall_mae": 0.45112653591032453,
+        "overall_bias": 0.0382925182618483,
+        "overall_correlation": 0.9991030094737952,
+        "climatology_rmse": 0.659066286100605,
+        "murphy_skill_score": -0.12558616691070457,
+        "shallow_rmse": 0.5090709329164167,
+        "thermo_rmse": 1.0862745013434287,
+        "deep_rmse": 0.4044091192022001
+      },
+      "alpha_0.5": {
+        "overall_rmse": 0.6498415943114971,
+        "overall_mae": 0.41273285488790273,
+        "overall_bias": 0.023916438023281684,
+        "overall_correlation": 0.9991077550673096,
+        "climatology_rmse": 0.659066286100605,
+        "murphy_skill_score": 0.027797308979346846,
+        "shallow_rmse": 0.4516237766369462,
+        "thermo_rmse": 1.0302226552493159,
+        "deep_rmse": 0.35496601372652636
+      },
+      "alpha_0.7": {
+        "overall_rmse": 0.6441755345255183,
+        "overall_mae": 0.4095266967228589,
+        "overall_bias": 0.018166052463018768,
+        "overall_correlation": 0.9990287863650984,
+        "climatology_rmse": 0.659066286100605,
+        "murphy_skill_score": 0.0446769414096323,
+        "shallow_rmse": 0.44111275792276716,
+        "thermo_rmse": 1.0275256238645287,
+        "deep_rmse": 0.3449470340549634
+      },
+      "alpha_1.0": {
+        "overall_rmse": 0.6516609491409812,
+        "overall_mae": 0.4180200114809821,
+        "overall_bias": 0.009540357633844376,
+        "overall_correlation": 0.9988219634527096,
+        "climatology_rmse": 0.659066286100605,
+        "murphy_skill_score": 0.022345956845025827,
+        "shallow_rmse": 0.44057208446050666,
+        "thermo_rmse": 1.0451702858236585,
+        "deep_rmse": 0.34212221915930946
+      }
+    },
+    "depth_dependent_optimal_blend": {
+      "overall_rmse": 0.6460819982916486,
+      "overall_mae": 0.4109409075746155,
+      "overall_bias": 0.022144340011857996,
+      "overall_correlation": 0.9990554101939089,
+      "climatology_rmse": 0.659066286100605,
+      "murphy_skill_score": 0.039013938741485066,
+      "shallow_rmse": 0.4516237768801593,
+      "thermo_rmse": 1.0276050474883267,
+      "deep_rmse": 0.34085730414924675
+    }
+  },
+  "locked_weights": {
+    "alpha_depthwise": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.85,
+      0.9,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "canonical_depths": [
+      0,
+      5,
+      10,
+      20,
+      30,
+      50,
+      75,
+      100,
+      125,
+      150,
+      200,
+      300,
+      500,
+      700,
+      1000
+    ]
+  }
+}

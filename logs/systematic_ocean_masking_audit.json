@@ -1,0 +1,252 @@
+[
+  {
+    "channel": 0,
+    "name": "sst",
+    "ocean_mean": 301.8021545410156,
+    "ocean_std": 1.9167463779449463,
+    "all_mean": 162.5218048095703,
+    "all_std": 150.45953369140625,
+    "distortion_ratio": 78.49736168679893,
+    "matches_json": true
+  },
+  {
+    "channel": 1,
+    "name": "sss",
+    "ocean_mean": 33.9969367980957,
+    "ocean_std": 2.307875156402588,
+    "all_mean": 16.86749267578125,
+    "all_std": 17.075519561767578,
+    "distortion_ratio": 7.398805569874988,
+    "matches_json": true
+  },
+  {
+    "channel": 2,
+    "name": "ssh",
+    "ocean_mean": 0.15289179980754852,
+    "ocean_std": 0.09621018916368484,
+    "all_mean": 0.08244098722934723,
+    "all_std": 0.1039191484451294,
+    "distortion_ratio": 1.0801262251790098,
+    "matches_json": true
+  },
+  {
+    "channel": 3,
+    "name": "wind_u",
+    "ocean_mean": 1.8445868492126465,
+    "ocean_std": 4.6670098304748535,
+    "all_mean": 0.9953769445419312,
+    "all_std": 3.549471616744995,
+    "distortion_ratio": 0.7605451339672553,
+    "matches_json": true
+  },
+  {
+    "channel": 4,
+    "name": "wind_v",
+    "ocean_mean": 0.7261139154434204,
+    "ocean_std": 4.3297247886657715,
+    "all_mean": 0.3918260335922241,
+    "all_std": 3.201091766357422,
+    "distortion_ratio": 0.7393291543003259,
+    "matches_json": true
+  },
+  {
+    "channel": 5,
+    "name": "current_u",
+    "ocean_mean": 0.018197810277342796,
+    "ocean_std": 0.2599153220653534,
+    "all_mean": 0.009671056643128395,
+    "all_std": 0.18969567120075226,
+    "distortion_ratio": 0.72983643170161,
+    "matches_json": false
+  },
+  {
+    "channel": 6,
+    "name": "current_v",
+    "ocean_mean": 0.009069783613085747,
+    "ocean_std": 0.21470005810260773,
+    "all_mean": 0.004820050671696663,
+    "all_std": 0.15658169984817505,
+    "distortion_ratio": 0.7293044130120485,
+    "matches_json": false
+  },
+  {
+    "channel": 7,
+    "name": "geostrophic_u",
+    "ocean_mean": 0.00843837670981884,
+    "ocean_std": 0.3899928033351898,
+    "all_mean": 0.004553521983325481,
+    "all_std": 0.28651514649391174,
+    "distortion_ratio": 0.7346677785940029,
+    "matches_json": true
+  },
+  {
+    "channel": 8,
+    "name": "geostrophic_v",
+    "ocean_mean": 0.0023378096520900726,
+    "ocean_std": 0.36777281761169434,
+    "all_mean": 0.0012615300947800279,
+    "all_std": 0.27016425132751465,
+    "distortion_ratio": 0.7345954850115166,
+    "matches_json": true
+  },
+  {
+    "channel": 9,
+    "name": "ageostrophic_u",
+    "ocean_mean": 0.009068921208381653,
+    "ocean_std": 0.30344992876052856,
+    "all_mean": 0.004893776029348373,
+    "all_std": 0.22295670211315155,
+    "distortion_ratio": 0.7347396752533124,
+    "matches_json": true
+  },
+  {
+    "channel": 10,
+    "name": "ageostrophic_v",
+    "ocean_mean": 0.00947024580091238,
+    "ocean_std": 0.2793571650981903,
+    "all_mean": 0.005110339727252722,
+    "all_std": 0.20526687800884247,
+    "distortion_ratio": 0.7347829361623637,
+    "matches_json": true
+  },
+  {
+    "channel": 11,
+    "name": "wind_stress_curl",
+    "ocean_mean": 1.5040323431136926e-09,
+    "ocean_std": 3.709581051225541e-07,
+    "all_mean": 8.116068372920893e-10,
+    "all_std": 2.725026320149482e-07,
+    "distortion_ratio": 0.7345913952329495,
+    "matches_json": true
+  },
+  {
+    "channel": 12,
+    "name": "wind_mixing_energy",
+    "ocean_mean": 387.2890319824219,
+    "ocean_std": 529.8568725585938,
+    "all_mean": 208.9891357421875,
+    "all_std": 434.4655456542969,
+    "distortion_ratio": 0.819967746301624,
+    "matches_json": true
+  },
+  {
+    "channel": 13,
+    "name": "precipitation",
+    "ocean_mean": 3.860621213912964,
+    "ocean_std": 13.009662628173828,
+    "all_mean": 2.083270311355591,
+    "all_std": 9.74854850769043,
+    "distortion_ratio": 0.7493313843956949,
+    "matches_json": true
+  },
+  {
+    "channel": 14,
+    "name": "latent_heat_flux",
+    "ocean_mean": -464262.84375,
+    "ocean_std": 211597.3125,
+    "all_mean": -250525.765625,
+    "all_std": 278760.3125,
+    "distortion_ratio": 1.3174095134124164,
+    "matches_json": true
+  },
+  {
+    "channel": 15,
+    "name": "e_minus_p_flux",
+    "ocean_mean": -3.6748387813568115,
+    "ocean_std": 13.004256248474121,
+    "all_mean": -1.983018398284912,
+    "all_std": 9.72679328918457,
+    "distortion_ratio": 0.7479699802382687,
+    "matches_json": true
+  },
+  {
+    "channel": 16,
+    "name": "chlorophyll",
+    "ocean_mean": 0.6976539492607117,
+    "ocean_std": 2.1419830322265625,
+    "all_mean": 0.08859776705503464,
+    "all_std": 0.797885000705719,
+    "distortion_ratio": 0.372498282526696,
+    "matches_json": false
+  },
+  {
+    "channel": 17,
+    "name": "river_plume_field",
+    "ocean_mean": 0.007567994762212038,
+    "ocean_std": 0.04123487323522568,
+    "all_mean": 0.004083844833076,
+    "all_std": 0.030524637550115585,
+    "distortion_ratio": 0.7402626746537281,
+    "matches_json": true
+  },
+  {
+    "channel": 18,
+    "name": "missingness_mask",
+    "ocean_mean": 0.08298055082559586,
+    "ocean_std": 0.27585282921791077,
+    "all_mean": 0.044778011739254,
+    "all_std": 0.20681622624397278,
+    "distortion_ratio": 0.7497339317864951,
+    "matches_json": true
+  },
+  {
+    "channel": 19,
+    "name": "bathymetry_log",
+    "ocean_mean": 3.149718761444092,
+    "ocean_std": 0.7601352334022522,
+    "all_mean": 1.6996527910232544,
+    "all_std": 1.6662546396255493,
+    "distortion_ratio": 2.1920502647504465,
+    "matches_json": false
+  },
+  {
+    "channel": 20,
+    "name": "land_ocean_mask",
+    "ocean_mean": 1.0,
+    "ocean_std": 0.0,
+    "all_mean": 0.5396205186843872,
+    "all_std": 0.49842777848243713,
+    "distortion_ratio": 1.0,
+    "matches_json": false
+  },
+  {
+    "channel": 21,
+    "name": "region_arabian_sea",
+    "ocean_mean": 0.3643055558204651,
+    "ocean_std": 0.4684205651283264,
+    "all_mean": 0.3833655118942261,
+    "all_std": 0.47432389855384827,
+    "distortion_ratio": 1.0126026350356856,
+    "matches_json": true
+  },
+  {
+    "channel": 22,
+    "name": "region_bay_of_bengal",
+    "ocean_mean": 0.2022436112165451,
+    "ocean_std": 0.3852630853652954,
+    "all_mean": 0.2932800054550171,
+    "all_std": 0.4441505968570709,
+    "distortion_ratio": 1.1528501269098752,
+    "matches_json": true
+  },
+  {
+    "channel": 23,
+    "name": "region_confluence_zone",
+    "ocean_mean": 0.039554331451654434,
+    "ocean_std": 0.1323528289794922,
+    "all_mean": 0.027109721675515175,
+    "all_std": 0.1174788773059845,
+    "distortion_ratio": 0.8876189365335563,
+    "matches_json": true
+  },
+  {
+    "channel": 24,
+    "name": "region_open_ocean",
+    "ocean_mean": 0.3887161612510681,
+    "ocean_std": 0.4624675214290619,
+    "all_mean": 0.2398751974105835,
+    "all_std": 0.4093329608440399,
+    "distortion_ratio": 0.8851063953186769,
+    "matches_json": true
+  }
+]

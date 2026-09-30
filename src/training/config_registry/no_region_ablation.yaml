@@ -1,0 +1,47 @@
+# ==============================================================================
+# Region-Conditioning Ablation (Stage C)
+# ==============================================================================
+
+experiment:
+  name: "ablation_no_region_conditioning"
+  description: "Region-conditioning OFF: 4 soft region maps zeroed/disabled, regional loss boost disabled"
+  run_dir: "checkpoints/ablation_no_region"
+
+data:
+  inputs_zarr: "data/processed/phase2_dataset/oceanembed_training_inputs.zarr"
+  anomaly_targets_zarr: "data/processed/phase2_dataset/oceanembed_anomaly_targets.zarr"
+  aux_targets_zarr: "data/processed/phase2_dataset/oceanembed_auxiliary_targets.zarr"
+  scalar_csv: "data/processed/phase2_dataset/scalar_conditioning.csv"
+  sequence_length: 7
+  train_val_split_date: "2025-01-01"
+
+architecture:
+  in_channels: 25
+  convlstm_hidden: [32, 64, 64]
+  unet_stages: [32, 64, 128, 256]
+  spatial_cond_dim: 70
+  non_spatial_cond_dim: 8
+  cond_emb_dim: 128
+  diffusion_timesteps: 1000
+  noise_schedule: "cosine"
+  use_checkpointing: true
+
+ablations:
+  region_conditioning_enabled: false    # ABLATION: zeroed region maps
+  depth_cascade_enabled: true
+  regional_loss_boost_enabled: false    # ABLATION: no Arabian Sea 1.3x boost
+
+training:
+  batch_size: 4
+  num_workers: 2
+  learning_rate: 0.0002
+  weight_decay: 0.0001
+  min_lr: 0.00001
+  lr_warmup_steps: 500
+  gradient_accumulation_steps: 2
+  max_grad_norm: 1.0
+  precision: "bf16"
+  checkpoint_interval_steps: 500
+  val_interval_epochs: 1
+  preview_interval_steps: 1000
+  epochs: 50

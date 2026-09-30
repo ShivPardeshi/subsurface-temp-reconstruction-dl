@@ -1,0 +1,246 @@
+{
+  "model_name": "Phase 8 Zone-Adaptive Scaling Pure Diffusion (15k Steps)",
+  "evaluation_protocol": "Full Comprehensive Extended Benchmark (Multi-Seasonal 10-Date)",
+  "overall_summary": {
+    "overall_multi_seasonal_rmse": 0.5762,
+    "climatology_baseline_rmse": 0.6422,
+    "overall_mae": 0.3661,
+    "overall_bias": 0.0256,
+    "overall_correlation_r": 0.9991,
+    "murphy_skill_score_pct": 19.49,
+    "surface_rmse_0_30m": 0.4434,
+    "thermocline_rmse_50_200m": 0.7741,
+    "deep_rmse_250_1000m": 0.2386
+  },
+  "depthwise_metrics": {
+    "0m": {
+      "depth_m": 0,
+      "model_rmse": 0.4272,
+      "clim_rmse": 0.4472,
+      "mae": 0.3111,
+      "bias": 0.0471,
+      "correlation_r": 0.9821,
+      "r2_stat": 0.9695,
+      "murphy_skill_pct": 8.74
+    },
+    "5m": {
+      "depth_m": 5,
+      "model_rmse": 0.4257,
+      "clim_rmse": 0.4472,
+      "mae": 0.308,
+      "bias": 0.0578,
+      "correlation_r": 0.9822,
+      "r2_stat": 0.9692,
+      "murphy_skill_pct": 9.39
+    },
+    "10m": {
+      "depth_m": 10,
+      "model_rmse": 0.4289,
+      "clim_rmse": 0.4446,
+      "mae": 0.3096,
+      "bias": 0.0531,
+      "correlation_r": 0.9958,
+      "r2_stat": 0.9916,
+      "murphy_skill_pct": 6.95
+    },
+    "20m": {
+      "depth_m": 20,
+      "model_rmse": 0.4524,
+      "clim_rmse": 0.4655,
+      "mae": 0.3233,
+      "bias": 0.0698,
+      "correlation_r": 0.9973,
+      "r2_stat": 0.9944,
+      "murphy_skill_pct": 5.57
+    },
+    "30m": {
+      "depth_m": 30,
+      "model_rmse": 0.4827,
+      "clim_rmse": 0.5101,
+      "mae": 0.3395,
+      "bias": 0.05,
+      "correlation_r": 0.9978,
+      "r2_stat": 0.9956,
+      "murphy_skill_pct": 10.46
+    },
+    "50m": {
+      "depth_m": 50,
+      "model_rmse": 0.6014,
+      "clim_rmse": 0.6383,
+      "mae": 0.4222,
+      "bias": 0.0255,
+      "correlation_r": 0.9976,
+      "r2_stat": 0.9952,
+      "murphy_skill_pct": 11.23
+    },
+    "75m": {
+      "depth_m": 75,
+      "model_rmse": 0.7919,
+      "clim_rmse": 0.8668,
+      "mae": 0.5578,
+      "bias": -0.0033,
+      "correlation_r": 0.9964,
+      "r2_stat": 0.9927,
+      "murphy_skill_pct": 16.52
+    },
+    "100m": {
+      "depth_m": 100,
+      "model_rmse": 0.9629,
+      "clim_rmse": 1.0978,
+      "mae": 0.679,
+      "bias": -0.0153,
+      "correlation_r": 0.9943,
+      "r2_stat": 0.9885,
+      "murphy_skill_pct": 23.07
+    },
+    "125m": {
+      "depth_m": 125,
+      "model_rmse": 0.9595,
+      "clim_rmse": 1.124,
+      "mae": 0.6729,
+      "bias": 0.0105,
+      "correlation_r": 0.9927,
+      "r2_stat": 0.9855,
+      "murphy_skill_pct": 27.13
+    },
+    "150m": {
+      "depth_m": 150,
+      "model_rmse": 0.7968,
+      "clim_rmse": 0.9331,
+      "mae": 0.5633,
+      "bias": 0.0085,
+      "correlation_r": 0.9936,
+      "r2_stat": 0.9874,
+      "murphy_skill_pct": 27.09
+    },
+    "200m": {
+      "depth_m": 200,
+      "model_rmse": 0.5321,
+      "clim_rmse": 0.5939,
+      "mae": 0.3719,
+      "bias": 0.0155,
+      "correlation_r": 0.9961,
+      "r2_stat": 0.9923,
+      "murphy_skill_pct": 19.72
+    },
+    "300m": {
+      "depth_m": 300,
+      "model_rmse": 0.3375,
+      "clim_rmse": 0.3518,
+      "mae": 0.2278,
+      "bias": 0.0199,
+      "correlation_r": 0.9978,
+      "r2_stat": 0.9956,
+      "murphy_skill_pct": 8.01
+    },
+    "500m": {
+      "depth_m": 500,
+      "model_rmse": 0.2078,
+      "clim_rmse": 0.2137,
+      "mae": 0.1394,
+      "bias": 0.0167,
+      "correlation_r": 0.9989,
+      "r2_stat": 0.9978,
+      "murphy_skill_pct": 5.39
+    },
+    "700m": {
+      "depth_m": 700,
+      "model_rmse": 0.1956,
+      "clim_rmse": 0.2052,
+      "mae": 0.1316,
+      "bias": 0.014,
+      "correlation_r": 0.9988,
+      "r2_stat": 0.9976,
+      "murphy_skill_pct": 9.11
+    },
+    "1000m": {
+      "depth_m": 1000,
+      "model_rmse": 0.2135,
+      "clim_rmse": 0.2235,
+      "mae": 0.1348,
+      "bias": 0.0149,
+      "correlation_r": 0.9978,
+      "r2_stat": 0.9956,
+      "murphy_skill_pct": 8.82
+    }
+  },
+  "priority_zones": {
+    "zone1_bob_barrier_layer": {
+      "name": "Bay of Bengal Barrier Layer (0-30m)",
+      "model_rmse": 0.4012,
+      "clim_rmse": 0.3641,
+      "mae": 0.2922,
+      "bias": 0.1392,
+      "murphy_skill_pct": -21.44
+    },
+    "zone2_thermocline_core": {
+      "name": "Thermocline Core (75-150m)",
+      "model_rmse": 0.8817,
+      "clim_rmse": 1.0113,
+      "mae": 0.6182,
+      "bias": 0.0001,
+      "murphy_skill_pct": 23.98
+    },
+    "zone3_as_pgw": {
+      "name": "Arabian Sea Persian Gulf Water (200-300m)",
+      "model_rmse": 0.5308,
+      "clim_rmse": 0.5705,
+      "mae": 0.3587,
+      "bias": 0.0977,
+      "murphy_skill_pct": 13.43
+    },
+    "zone4_confluence": {
+      "name": "Equatorial Confluence Zone (8-10N)",
+      "model_rmse": 0.544,
+      "clim_rmse": 0.6826,
+      "mae": 0.3376,
+      "bias": 0.0094,
+      "murphy_skill_pct": 36.47
+    },
+    "zone5_cyclone": {
+      "name": "Extreme Cyclone Profiles (Pre/Post-Monsoon)",
+      "model_rmse": 0.6774,
+      "clim_rmse": 0.668,
+      "mae": 0.4342,
+      "bias": 0.0511,
+      "murphy_skill_pct": -2.86
+    },
+    "zone6_monsoon_transitions": {
+      "name": "Monsoon Inter-Monsoon Transitions (Apr/Oct)",
+      "model_rmse": 0.5844,
+      "clim_rmse": 0.6357,
+      "mae": 0.3734,
+      "bias": 0.0144,
+      "murphy_skill_pct": 15.5
+    },
+    "zone7_equatorial_edge": {
+      "name": "Equatorial Domain Boundary Edge (2N-5N)",
+      "model_rmse": 0.6431,
+      "clim_rmse": 0.6936,
+      "mae": 0.4032,
+      "bias": -0.1225,
+      "murphy_skill_pct": 14.04
+    }
+  },
+  "auxiliary_targets": {
+    "mld_rmse_m": 4.97,
+    "mld_mae_m": 3.22,
+    "mld_corr_r": 0.9645,
+    "blt_rmse_m": 44.31,
+    "blt_mae_m": 39.98,
+    "blt_corr_r": 0.6072,
+    "sal_max_depth_rmse_m": 117.34,
+    "sal_max_depth_mae_m": 116.78
+  },
+  "physical_soundness": {
+    "static_stability_violation_rate_pct": 0.002,
+    "d20_isotherm_depth_rmse_m": 9.81,
+    "d26_isotherm_depth_rmse_m": 11.83
+  },
+  "structural_quality_ssim": {
+    "surface_0m_ssim": 0.9456,
+    "thermocline_100m_ssim": 0.8567,
+    "deep_500m_ssim": 0.9455,
+    "mean_structural_similarity": 0.9159
+  }
+}

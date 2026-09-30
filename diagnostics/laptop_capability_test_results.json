@@ -1,0 +1,34 @@
+{
+  "environment": {
+    "torch_version": "2.9.1+cpu",
+    "cuda_available": false,
+    "gpu": "None",
+    "vram_total_gb": 0.0,
+    "ram_total_gb": 23.19,
+    "cpu": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD"
+  },
+  "step4_results": [
+    {
+      "config": "fp32",
+      "success": false,
+      "peak_vram_gb": null
+    },
+    {
+      "config": "mixed_precision",
+      "success": false,
+      "peak_vram_gb": null
+    },
+    {
+      "config": "mixed_precision_plus_checkpointing",
+      "success": false,
+      "peak_vram_gb": null
+    }
+  ],
+  "throughput": {
+    "steps_per_second": 0.0,
+    "peak_sustained_vram_gb": 0.0,
+    "gpu_temp_trend_note": "N/A"
+  },
+  "projections_hours": {},
+  "recommendation": "GCP REQUIRED \u2014 does not fit in available VRAM"
+}

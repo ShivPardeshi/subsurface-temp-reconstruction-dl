@@ -1,0 +1,81 @@
+# ==============================================================================
+# Phase 8 Production Run: Zone-Adaptive Depth Scaling & Multi-Domain Convergence (15k Steps)
+# Fine-tuned from Phase 7 Best Checkpoint to achieve simultaneous mastery across ALL zones:
+#   1. Zone-Adaptive Target Scaling:
+#      - Surface (0-30m):     p=0.75 -> restores surface skill
+#      - Thermocline (50-200m): p=0.50 -> IDENTICAL to Phase 7, gains 100% preserved
+#      - Transition (300m):    p=0.75 -> gradual smooth gradient bridge
+#      - Deep Abyss (500-1000m): p=1.00 -> full standardization, restores Phase 6 deep accuracy
+#   2. Zone-Adaptive Physical Variance Loss Weighting (beta(d)):
+#      - Surface: beta=1.00
+#      - Thermocline: beta=1.50 (exact Phase 7 priority)
+#      - Deep: beta=0.50 (eliminates deep-ocean gradient attenuation)
+#   3. Initialization: Warm start from Phase 7 Best Checkpoint (25,000 steps)
+#   4. Precision: fp16 (optimized for NVIDIA V100 Tensor Cores)
+# ==============================================================================
+
+experiment:
+  name: "phase8_zone_adaptive_15k"
+  description: "Phase 8 Zone-Adaptive Scaling (p: 0.75/0.50/0.75/1.00) 15k Fine-Tuning Run"
+  run_dir: "checkpoints/phase8_zone_adaptive_15k"
+  seed: 42
+
+data:
+  inputs_zarr: "data/processed/phase2_dataset/oceanembed_training_inputs.zarr"
+  anomaly_targets_zarr: "data/processed/phase2_dataset/oceanembed_anomaly_targets.zarr"
+  aux_targets_zarr: "data/processed/phase2_dataset/oceanembed_auxiliary_targets.zarr"
+  scalar_csv: "data/processed/phase2_dataset/scalar_conditioning.csv"
+  depth_scales_path: "data/processed/anomaly_depth_scales_zone_adaptive_p8.json"
+  sequence_length: 7
+  train_val_split_date: "2025-01-01"
+
+architecture:
+  in_channels: 25
+  convlstm_hidden: [32, 64, 64]
+  unet_stages: [32, 64, 128, 256]
+  unet_in_channels: 74
+  spatial_cond_dim: 72
+  non_spatial_cond_dim: 14
+  cond_emb_dim: 128
+  diffusion_timesteps: 1000
+  noise_schedule: "cosine"
+  use_checkpointing: true
+  normalize_inputs: true
+  norm_stats_path: "data/processed/channel_normalization_stats_ocean_only.json"
+
+ablations:
+  region_conditioning_enabled: false
+  depth_cascade_enabled: true
+  regional_loss_boost_enabled: true
+
+training:
+  batch_size: 4
+  num_workers: 4
+  learning_rate: 0.00010
+  weight_decay: 0.0001
+  min_lr: 0.000001
+  min_lr_ratio: 0.01
+  lr_warmup_steps: 200
+  epochs: 300
+  max_steps: 15000
+  warm_restart: false
+  init_from_checkpoint: "checkpoints/phase7_dampened_scaling_thermocline_25k/last_checkpoint.pt"
+  skill_focused_loss: true
+  inverse_variance_loss: false
+  use_min_snr: true
+  min_snr_gamma: 5.0
+  variance_weight_exponent: "zone_adaptive"
+  augmentation_enabled: true
+  checkpoint_interval_steps: 500
+  val_interval_steps: 500
+  save_best_only: false
+  precision: "bf16"
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+
+evaluation:
+  num_val_dates: 10
+  eval_depths: [0, 5, 10, 20, 30, 50, 75, 100, 125, 150, 200, 300, 500, 700, 1000]
+  ddim_steps: 25
+  eta: 0.0
+  schedule_type: "quadratic"

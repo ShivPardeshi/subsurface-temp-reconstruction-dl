@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "pilot_steps": 50,
+  "peak_vram_gb": 0.839,
+  "steps_per_second": 8.02,
+  "avg_step_ms": 124.7,
+  "best_val_rmse": 5.448904991149902,
+  "extrapolations_hours": {
+    "5000_steps_hours": 0.17,
+    "20000_steps_hours": 0.69,
+    "50000_steps_hours": 1.73
+  }
+}

@@ -1,0 +1,18 @@
+domain:
+  lat_min: 2.0        # extended south of nominal 5N for equatorial-edge padding fix
+  lat_max: 30.0
+  lon_min: 45.0
+  lon_max: 105.0
+  resolution: 0.25
+  crop_lat_min_final: 5.0   # crop back to this for final delivery, post-Phase-1
+
+depth_levels_m: [0, 5, 10, 20, 30, 50, 75, 100, 125, 150, 200, 300, 500, 700, 1000]
+
+temporal:
+  frequency: daily
+
+region_boundaries:
+  arabian_sea_lon_max: 77.0       # west of this, north of confluence zone
+  bay_of_bengal_lon_min: 80.0     # east of this, north of confluence zone
+  confluence_zone_lat_range: [8.0, 10.0]
+  blend_distance_degrees: 2.0     # soft-edge blending width (degrees)

@@ -1,0 +1,64 @@
+# ==============================================================================
+# Phase 4 Production Run: Model V2 Clean Scratch 40k Full Training on g2-standard-8
+# Target: 40,000-step full training run for Model V2 Pure Diffusion
+# Host: g2-standard-8 (8 vCPU, 32GB RAM, 1x NVIDIA L4 24GB)
+# ==============================================================================
+
+experiment:
+  name: "phase4_scratch_40k_v2"
+  description: "Model V2 clean single-pass scratch training (40,000 steps) on g2-standard-8 with all 10 architectural fixes"
+  run_dir: "checkpoints/phase4_scratch_40k_v2"
+  seed: 42
+
+data:
+  inputs_zarr: "data/processed/phase2_dataset/oceanembed_training_inputs.zarr"
+  anomaly_targets_zarr: "data/processed/phase2_dataset/oceanembed_anomaly_targets.zarr"
+  aux_targets_zarr: "data/processed/phase2_dataset/oceanembed_auxiliary_targets.zarr"
+  scalar_csv: "data/processed/phase2_dataset/scalar_conditioning.csv"
+  sequence_length: 7
+  train_val_split_date: "2025-01-01"
+
+architecture:
+  in_channels: 25
+  convlstm_hidden: [32, 64, 64]
+  unet_stages: [32, 64, 128, 256]
+  spatial_cond_dim: 70
+  non_spatial_cond_dim: 8
+  cond_emb_dim: 128
+  diffusion_timesteps: 1000
+  noise_schedule: "cosine"
+  use_checkpointing: true
+  normalize_inputs: true
+  norm_stats_path: "data/processed/channel_normalization_stats_ocean_only.json"
+
+ablations:
+  region_conditioning_enabled: false
+  depth_cascade_enabled: true
+  regional_loss_boost_enabled: true
+
+training:
+  batch_size: 4
+  num_workers: 4
+  learning_rate: 0.00025
+  weight_decay: 0.0001
+  min_lr: 0.00001
+  min_lr_ratio: 0.04
+  lr_warmup_steps: 1000
+  epochs: 700
+  max_steps: 40000
+  warm_restart: false
+  init_from_checkpoint: null
+  skill_focused_loss: true
+  augmentation_enabled: true
+  checkpoint_interval_steps: 500
+  val_interval_steps: 500
+  save_best_only: false
+  precision: "fp32"
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+
+evaluation:
+  num_val_dates: 10
+  eval_depths: [0, 5, 10, 20, 30, 50, 75, 100, 125, 150, 200, 300, 500, 700, 1000]
+  ddim_steps: 10
+  eta: 0.0

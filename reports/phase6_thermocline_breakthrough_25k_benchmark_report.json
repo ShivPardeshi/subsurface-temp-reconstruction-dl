@@ -1,0 +1,33 @@
+{
+  "model_name": "Phase 6 Thermocline Breakthrough Pure Diffusion (25k Steps)",
+  "overall_rmse": 0.7111,
+  "climatology_baseline_rmse": 0.6422,
+  "murphy_skill_score_pct": -22.59,
+  "surface_rmse_0_30m": 0.4912,
+  "thermocline_rmse_50_200m": 0.9723,
+  "deep_rmse_250_1000m": 0.2996,
+  "per_depth_rmse": {
+    "0": 0.4883,
+    "5": 0.4743,
+    "10": 0.4711,
+    "20": 0.4867,
+    "30": 0.5358,
+    "50": 0.7059,
+    "75": 0.9963,
+    "100": 1.2317,
+    "125": 1.2436,
+    "150": 1.0186,
+    "200": 0.6377,
+    "300": 0.4096,
+    "500": 0.2573,
+    "700": 0.2465,
+    "1000": 0.285
+  },
+  "zone_rmse": {
+    "arabian_sea": 0.752,
+    "bay_of_bengal": 0.5824,
+    "confluence": 0.6227,
+    "open_ocean": 0.7417
+  },
+  "eval_duration_sec": 27.5
+}

@@ -1,0 +1,240 @@
+{
+  "model_name": "OceanEmbed Final Locked-In Hybrid Ridge + Diffusion Cascade Ensemble",
+  "configuration": {
+    "diffusion_backbone": "Clean Scratch 40k Full Cosine (Step 40,000)",
+    "linear_baseline": "Multi-Output Ridge Regression (alpha=100.0, 45 features)",
+    "ensemble_weight_ridge": 0.75,
+    "ensemble_weight_diffusion": 0.25,
+    "region_conditioning": false,
+    "depth_cascade": true,
+    "uncertainty_calibration": "Post-Hoc Parametric Scaling (ECE=0.0727)"
+  },
+  "multi_seasonal_10_dates": {
+    "overall_rmse": 0.616440121627822,
+    "overall_mae": 0.3926875979380386,
+    "overall_bias": 0.0045738136492647335,
+    "overall_correlation": 0.9995372054892717,
+    "climatology_rmse": 0.6422202310293326,
+    "murphy_skill_score": 0.07867293336435777,
+    "depthwise_metrics": {
+      "0m": {
+        "depth_m": 0,
+        "model_rmse": 0.44653983713589135,
+        "clim_rmse": 0.4471689742247401,
+        "mae": 0.3169009833353013,
+        "bias": -0.0022683319795404177,
+        "correlation": 0.9811333331407989,
+        "murphy_skill_score": 0.0028118878902995137
+      },
+      "5m": {
+        "depth_m": 5,
+        "model_rmse": 0.4470239835297263,
+        "clim_rmse": 0.4471689742798645,
+        "mae": 0.31777913767914423,
+        "bias": 0.0076101516245105725,
+        "correlation": 0.9810680050776306,
+        "murphy_skill_score": 0.0006483779173666049
+      },
+      "10m": {
+        "depth_m": 10,
+        "model_rmse": 0.444090305025306,
+        "clim_rmse": 0.44460336053367716,
+        "mae": 0.31195490670030224,
+        "bias": 0.01152891169655304,
+        "correlation": 0.9955515703589288,
+        "murphy_skill_score": 0.0023065929344444625
+      },
+      "20m": {
+        "depth_m": 20,
+        "model_rmse": 0.46626641439827377,
+        "clim_rmse": 0.4655123286483249,
+        "mae": 0.31970375765498016,
+        "bias": 0.02445810693906224,
+        "correlation": 0.9970823844806294,
+        "murphy_skill_score": -0.00324243409741487
+      },
+      "30m": {
+        "depth_m": 30,
+        "model_rmse": 0.5100172228591209,
+        "clim_rmse": 0.5101446195298104,
+        "mae": 0.341585818447973,
+        "bias": 0.016119383072068994,
+        "correlation": 0.997605760453365,
+        "murphy_skill_score": 0.0004993907948673826
+      },
+      "50m": {
+        "depth_m": 50,
+        "model_rmse": 0.6260398093612713,
+        "clim_rmse": 0.6383284283929012,
+        "mae": 0.4279975149566257,
+        "bias": -0.0493144627959561,
+        "correlation": 0.9974847454250899,
+        "murphy_skill_score": 0.03813188591502259
+      },
+      "75m": {
+        "depth_m": 75,
+        "model_rmse": 0.8317737889979298,
+        "clim_rmse": 0.8667824656060925,
+        "mae": 0.5987995653764432,
+        "bias": -0.07236981739773377,
+        "correlation": 0.9961788600679864,
+        "murphy_skill_score": 0.07914717064210985
+      },
+      "100m": {
+        "depth_m": 100,
+        "model_rmse": 1.032669456286549,
+        "clim_rmse": 1.09777962307476,
+        "mae": 0.7573278039193985,
+        "bias": -0.02440368664330194,
+        "correlation": 0.9935101829139515,
+        "murphy_skill_score": 0.1151037932190575
+      },
+      "125m": {
+        "depth_m": 125,
+        "model_rmse": 1.0549355909645006,
+        "clim_rmse": 1.1240040594295362,
+        "mae": 0.7749700962347239,
+        "bias": 0.03483968419575279,
+        "correlation": 0.9912623676127843,
+        "murphy_skill_score": 0.11912125723128686
+      },
+      "150m": {
+        "depth_m": 150,
+        "model_rmse": 0.8753193192792078,
+        "clim_rmse": 0.9331105065705328,
+        "mae": 0.6427909870002678,
+        "bias": 0.041939599664189954,
+        "correlation": 0.992439281866267,
+        "murphy_skill_score": 0.12003202116155376
+      },
+      "200m": {
+        "depth_m": 200,
+        "model_rmse": 0.5666586003367801,
+        "clim_rmse": 0.5938648510771385,
+        "mae": 0.3949774577886208,
+        "bias": 0.025012079298250896,
+        "correlation": 0.9956844543980864,
+        "murphy_skill_score": 0.08952562758075855
+      },
+      "300m": {
+        "depth_m": 300,
+        "model_rmse": 0.3523690835302988,
+        "clim_rmse": 0.3518449234763687,
+        "mae": 0.23354970311710407,
+        "bias": 0.011005645905959961,
+        "correlation": 0.9976313990735906,
+        "murphy_skill_score": -0.0029817141130334957
+      },
+      "500m": {
+        "depth_m": 500,
+        "model_rmse": 0.22504196522479925,
+        "clim_rmse": 0.21367278101478754,
+        "mae": 0.1528318263415559,
+        "bias": 0.016675807984899378,
+        "correlation": 0.998757370513267,
+        "murphy_skill_score": -0.10924790828480457
+      },
+      "700m": {
+        "depth_m": 700,
+        "model_rmse": 0.2170229097654081,
+        "clim_rmse": 0.20515194220926897,
+        "mae": 0.15027163379489428,
+        "bias": 0.01537265249102198,
+        "correlation": 0.9985645550556826,
+        "murphy_skill_score": -0.11907681561049599
+      },
+      "1000m": {
+        "depth_m": 1000,
+        "model_rmse": 0.23183719054400545,
+        "clim_rmse": 0.2235433460542078,
+        "mae": 0.14887277672324473,
+        "bias": 0.012401480683233424,
+        "correlation": 0.9974502258552688,
+        "murphy_skill_score": -0.07557999485418132
+      }
+    },
+    "priority_zones": {
+      "zone1_bob_barrier_layer": {
+        "name": "Bay of Bengal Barrier Layer (0-30m)",
+        "description": "Freshwater plume barrier layer capping in Bay of Bengal (0 to 30m depth)",
+        "model_rmse": 0.37132960737797616,
+        "clim_rmse": 0.3580555970586749,
+        "mae": 0.2656074426462888,
+        "bias": 0.08599790174475141,
+        "correlation": 0.9995939071350335,
+        "murphy_skill_score": -0.07551933664261301
+      },
+      "zone2_thermocline_core": {
+        "name": "Thermocline Core (75-150m)",
+        "description": "High vertical thermal gradient zone across Arabian Sea and Bay of Bengal (75 to 150m depth)",
+        "model_rmse": 0.7768890657863375,
+        "clim_rmse": 0.8161132049784068,
+        "mae": 0.5323168041739813,
+        "bias": -0.0004840185207196887,
+        "correlation": 0.9996586867194053,
+        "murphy_skill_score": 0.09381429221900317
+      },
+      "zone3_as_persian_gulf_water": {
+        "name": "Arabian Sea PGW Zone (200-300m)",
+        "description": "High-salinity Persian Gulf Water outflow intrusion in Arabian Sea (200 to 300m depth)",
+        "model_rmse": 0.5595357644313903,
+        "clim_rmse": 0.5728870571672462,
+        "mae": 0.3789043659670343,
+        "bias": -0.008368412746298785,
+        "correlation": 0.9998073835505626,
+        "murphy_skill_score": 0.04606742208354064
+      },
+      "zone4_confluence_zone": {
+        "name": "8-10\u00b0N Confluence Zone",
+        "description": "Dynamic current confluence separating Arabian Sea and Bay of Bengal (8\u00b0N - 10\u00b0N)",
+        "model_rmse": 0.6309229533131162,
+        "clim_rmse": 0.6664393246773567,
+        "mae": 0.3807668721402125,
+        "bias": 0.019924353931815353,
+        "correlation": 0.9996253064539705,
+        "murphy_skill_score": 0.10374534598838459
+      },
+      "zone5_extreme_cyclone_events": {
+        "name": "Extreme Event Windows (Cyclones)",
+        "description": "Active North Indian Ocean tropical cyclone periods (IBTrACS identified windows)",
+        "model_rmse": 0.6164755132940455,
+        "clim_rmse": 0.6422620930374561,
+        "mae": 0.3927198712074173,
+        "bias": 0.004560437230562543,
+        "correlation": 0.9995370158053208,
+        "murphy_skill_score": 0.07868725030804435
+      },
+      "zone6_monsoon_transitions": {
+        "name": "Monsoon Transition Windows",
+        "description": "Pre-monsoon onset (May 15-Jun 15) and Post-monsoon withdrawal (Sep 15-Oct 15) periods",
+        "model_rmse": 0.6164755132940455,
+        "clim_rmse": 0.6422620930374561,
+        "mae": 0.3927198712074173,
+        "bias": 0.004560437230562543,
+        "correlation": 0.9995370158053208,
+        "murphy_skill_score": 0.07868725030804435
+      },
+      "zone7_equatorial_edge": {
+        "name": "Equatorial Boundary Edge (2-5\u00b0N)",
+        "description": "Boundary region near 2\u00b0N - 5\u00b0N where Coriolis force approaches zero and boundary artifacts occur",
+        "model_rmse": 0.6595937895972384,
+        "clim_rmse": 0.6935988045928794,
+        "mae": 0.414068168494886,
+        "bias": -0.01334117951176185,
+        "correlation": 0.9992261510603154,
+        "murphy_skill_score": 0.09565020630007348
+      }
+    }
+  },
+  "continuous_61_days_test": {
+    "num_days": 61,
+    "start_day": 298,
+    "end_day": 358,
+    "continuous_rmse": 0.643926501752147,
+    "continuous_mae": 0.4098207991894268,
+    "continuous_bias": 0.016659408849859985,
+    "continuous_correlation": 0.998999841421495,
+    "continuous_clim_rmse": 0.659066286100605,
+    "continuous_murphy_skill": 0.045415438144253195
+  }
+}

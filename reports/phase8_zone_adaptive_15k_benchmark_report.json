@@ -1,0 +1,33 @@
+{
+  "model_name": "Phase 8 Zone-Adaptive Scaling Pure Diffusion (15k Steps)",
+  "overall_rmse": 0.7134,
+  "climatology_baseline_rmse": 0.6422,
+  "murphy_skill_score_pct": -23.42,
+  "surface_rmse_0_30m": 0.5282,
+  "thermocline_rmse_50_200m": 0.9635,
+  "deep_rmse_250_1000m": 0.3092,
+  "per_depth_rmse": {
+    "0": 0.5246,
+    "5": 0.5149,
+    "10": 0.5135,
+    "20": 0.525,
+    "30": 0.5632,
+    "50": 0.7294,
+    "75": 0.9864,
+    "100": 1.1993,
+    "125": 1.2046,
+    "150": 1.0052,
+    "200": 0.6559,
+    "300": 0.4322,
+    "500": 0.2625,
+    "700": 0.2519,
+    "1000": 0.2901
+  },
+  "zone_rmse": {
+    "arabian_sea": 0.7643,
+    "bay_of_bengal": 0.5866,
+    "confluence": 0.6169,
+    "open_ocean": 0.7342
+  },
+  "eval_duration_sec": 28.4
+}

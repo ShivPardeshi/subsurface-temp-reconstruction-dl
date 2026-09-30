@@ -1,0 +1,21 @@
+{
+  "multi_seasonal_10_dates": {
+    "clean_scratch_40k_rmse": 0.7245736252538625,
+    "warm_started_40k_rmse": 0.6736911784994842,
+    "climatology_rmse": 0.6422202310293326,
+    "ensemble_5050": {
+      "overall_rmse": 0.6715705460166165,
+      "overall_bias": 0.046958411375564904,
+      "murphy_skill_score": -0.09349125943758518,
+      "shallow_rmse": 0.512116037027259,
+      "thermo_rmse": 1.0295498178582159,
+      "deep_rmse": 0.3916440761084444
+    },
+    "ensemble_depth_weighted_hybrid": {
+      "overall_rmse": 0.6771752216914341,
+      "overall_bias": 0.044799376190516854,
+      "murphy_skill_score": -0.11181915562919453
+    }
+  },
+  "key_finding": "Cross-architecture ensembling combines the superior shallow physics of Clean Scratch with the deep asymptotic convergence of Warm-Started, achieving a balanced hybrid profile."
+}

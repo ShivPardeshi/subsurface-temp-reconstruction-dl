@@ -1,0 +1,33 @@
+{
+  "model_name": "Phase 7 Dampened Scaling Pure Diffusion (25k Steps)",
+  "overall_rmse": 0.7232,
+  "climatology_baseline_rmse": 0.6422,
+  "murphy_skill_score_pct": -26.83,
+  "surface_rmse_0_30m": 0.5417,
+  "thermocline_rmse_50_200m": 0.9693,
+  "deep_rmse_250_1000m": 0.3351,
+  "per_depth_rmse": {
+    "0": 0.5424,
+    "5": 0.5264,
+    "10": 0.5221,
+    "20": 0.5361,
+    "30": 0.5814,
+    "50": 0.732,
+    "75": 0.9902,
+    "100": 1.2044,
+    "125": 1.2185,
+    "150": 1.0133,
+    "200": 0.6577,
+    "300": 0.4443,
+    "500": 0.2977,
+    "700": 0.2826,
+    "1000": 0.3156
+  },
+  "zone_rmse": {
+    "arabian_sea": 0.7735,
+    "bay_of_bengal": 0.5942,
+    "confluence": 0.6266,
+    "open_ocean": 0.7468
+  },
+  "eval_duration_sec": 27.8
+}
